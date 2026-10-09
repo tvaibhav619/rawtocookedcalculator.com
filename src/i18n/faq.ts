@@ -44,6 +44,10 @@ export interface FoodFaqSet {
 export const HOME_FAQ: Record<Locale, FaqItem[]> = {
   en: [
     {
+      q: 'How does a raw to cooked meat weight conversion calculator work?',
+      a: 'A raw to cooked meat weight conversion calculator applies scientific USDA cooking yield percentages to compute exact weight changes during cooking. Meats lose between 15% and 35% of their mass through water evaporation and rendered fat. By entering raw or cooked weight, the calculator uses the formula Cooked = Raw × (Yield ÷ 100) to determine exact edible servings and ensure accurate macro logging.',
+    },
+    {
       q: 'Are nutrition labels based on raw or cooked weight?',
       a: 'Almost all packaged nutrition labels and databases — including USDA FoodData Central — list values based on raw weight unless the label explicitly says "cooked." This is the single most common source of tracking errors: the gram amounts on the label describe raw food, but most people weigh after cooking.',
     },
@@ -285,6 +289,10 @@ export const HOME_FAQ: Record<Locale, FaqItem[]> = {
 export const FOOD_FAQ: Record<Locale, FoodFaqSet> = {
   en: {
     chicken: [
+      {
+        q: 'How do I calculate raw to cooked chicken weight?',
+        a: 'To calculate raw to cooked chicken weight, multiply the raw chicken weight by 0.72 (the standard USDA 72% yield for baked/roasted chicken breast). For example, 200g of raw chicken breast yields 144g cooked (200g × 0.72 = 144g). To calculate raw weight from cooked chicken, divide the cooked weight by 0.72 (e.g., 150g cooked ÷ 0.72 = 208g raw).',
+      },
       {
         q: 'How much does chicken breast shrink when cooked?',
         a: 'Chicken breast loses about 28% of its weight when cooked, meaning a 200g raw breast yields approximately 144g cooked. Yield varies slightly by method: baked/roasted = 72%, grilled = 70%, boiled/poached = 77%, pan-fried = 72% (USDA data).',

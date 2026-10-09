@@ -4,7 +4,7 @@ export const enGuide: GuideContent = {
   badge: 'Comprehensive Reference & Science Guide',
   title: 'The Complete Guide to Raw vs. Cooked Food Weights, Moisture Dynamics, and Nutritional Accuracy',
   intro:
-    'Anyone who has ever prepared a meal, stepped on a scale, or logged a meal into a fitness app knows that food does not emerge from the stove weighing what it did when it came out of the refrigerator. Animal proteins shrink and lose up to a third of their initial mass, while dry grains, pasta, and pulses absorb boiling water and double or triple in volume. This authoritative reference details the thermodynamics of culinary cooking yields, the universal mathematical conversion framework, official USDA yield figures, and practical strategies for meal prepping and macronutrient tracking.',
+    'Anyone who has ever prepared a meal, stepped on a scale, or logged a meal into a fitness app knows that food does not emerge from the stove weighing what it did when it came out of the refrigerator. Animal proteins shrink and lose up to a third of their initial mass, while dry grains, pasta, and pulses absorb boiling water and double or triple in volume. This authoritative raw to cooked weight conversion calculator guide details the thermodynamics of culinary cooking yields, how to use a raw to cooked meat weight conversion calculator for beef and steak, exact formulas for raw to cooked chicken weight, and how our free raw to cooked calculator guarantees nutritional accuracy.',
 
   sec1Title: '1. The Cellular Physics and Chemistry of Cooking Yields',
   sec1Intro:
@@ -28,9 +28,9 @@ export const enGuide: GuideContent = {
   sec1VegText:
     'Vegetables exhibit a third distinct mechanism. Many vegetables, such as spinach and zucchini, contain high moisture content trapped in cell vacuoles. Heat dissolves structural pectin in the cell walls and bursts the air pockets between cells. In spinach, this causes an 80% to 90% collapse in physical volume, even though the actual weight loss is only around 23%. By contrast, root vegetables like potatoes lose very little weight (approx. 6%) when boiled whole because starch gelatinization counterbalances moisture evaporation.',
 
-  sec2Title: '2. The Universal Mathematical Conversion Framework',
+  sec2Title: '2. The Mathematical Framework: Raw to Cooked Weight Conversion Calculator Equations',
   sec2Intro:
-    'Converting between raw and cooked food weights is based on a single core scientific parameter: the Cooking Yield Percentage (Yield %). Established through decades of laboratory research by food scientists at the United States Department of Agriculture (USDA), yield represents the ratio of final edible cooked weight to initial raw weight:',
+    'Operating a raw to cooked weight conversion calculator or converting manually relies on a single scientific parameter: Cooking Yield Percentage (Yield %). Whether using a raw to cooked meat weight conversion calculator for beef and pork, or calculating raw to cooked chicken weight for your weekly meal prep, yield represents the ratio of final edible cooked weight to initial raw weight:',
   sec2EquationLabel: 'Fundamental Yield Equation',
   sec2Equation: 'Cooking Yield % = (Cooked Weight ÷ Raw Weight) × 100',
   sec2SubIntro:
@@ -50,9 +50,9 @@ export const enGuide: GuideContent = {
   sec2ShrinkageNoteHtml:
     '<strong>Understanding Shrinkage Percentage:</strong> For meats and fish where mass decreases, shrinkage percentage is simply <code>100% − Yield %</code>. A chicken breast with a 72% yield undergoes <code>100% − 72% = 28%</code> shrinkage. For grains that expand past 100%, the multiplier is greater than 1.0 (e.g., white rice with 300% yield has an expansion multiplier of 3.0×).',
 
-  sec3Title: '3. Master Culinary Conversion Table (USDA-Verified Yields)',
+  sec3Title: '3. Raw to Cooked Meat Weight Conversion Calculator Table & Food Yields',
   sec3Intro:
-    'Below is the comprehensive conversion reference across meat, poultry, seafood, grains, legumes, and produce. Every value is sourced from USDA Agriculture Handbook No. 102, the USDA Table of Cooking Yields for Meat and Poultry, and USDA FoodData Central:',
+    'Below is the comprehensive conversion reference across meat, poultry, seafood, grains, legumes, and produce. Use this raw to cooked meat weight conversion calculator reference to accurately predict finished portions across every major protein and carb source. Every value is sourced from USDA Agriculture Handbook No. 102, the USDA Table of Cooking Yields for Meat and Poultry, and USDA FoodData Central:',
   sec3ColFood: 'Food Item',
   sec3ColMethod: 'Standard Method',
   sec3ColYield: 'USDA Yield',
@@ -106,7 +106,7 @@ export const enGuide: GuideContent = {
   sec4CookedFat: '2.6g Fat • 0g Carbs (Unchanged)',
   sec4CardSummaryHtml:
     'Because 28g of zero-calorie water evaporated, the cooked meat is now significantly more nutrient-dense per gram. Cooked chicken delivers roughly <strong>31.25g of protein per 100g cooked</strong>, whereas raw chicken delivers only <strong>22.5g of protein per 100g raw</strong>.',
-  sec4TrapTitle: 'The Fatal Calorie Tracking Dilemma',
+  sec4TrapTitle: 'The Macro Tracking Dilemma: Why Raw to Cooked Chicken Weight Errors Compound',
   sec4TrapP1:
     'Popular mobile nutrition apps such as MyFitnessPal, MacroFactor, Cronometer, and Lose It! rely on nutrition databases that list whole foods in their raw state by default (as defined by USDA FoodData Central). When users cook a batch of chicken, weigh 150g of cooked meat on their plate, and select a generic entry titled "Chicken Breast", the application assumes they consumed 150g of raw chicken.',
   sec4TrapP2Html:

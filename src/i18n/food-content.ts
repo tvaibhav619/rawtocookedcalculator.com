@@ -48,14 +48,14 @@ const EN: Record<string, FoodLongContent> = {
   // ── Meat, poultry & seafood ──────────────────────────────────────────────
 
   'chicken-breast': {
-    introHeading: 'Why chicken breast shrinks about 28% when you cook it',
+    introHeading: 'Raw to Cooked Chicken Weight: Why Chicken Breast Shrinks About 28%',
     intro: [
-      'Skinless, boneless chicken breast is roughly 74% water by weight and almost pure lean muscle — about 22.5g of protein and only 2.6g of fat per 100g raw. There is very little fat and almost no connective tissue to hold moisture in place, so when the muscle fibres hit heat they behave like a wrung-out sponge: the proteins denature at around 60–65°C, the fibre bundles contract lengthwise and sideways, and the water they were holding is squeezed out into the pan. That water loss is essentially the entire 28% the breast drops on the way to a 72% USDA yield.',
+      'Calculating raw to cooked chicken weight is essential for accurate nutrition tracking. Skinless, boneless chicken breast is roughly 74% water by weight and almost pure lean muscle — about 22.5g of protein and only 2.6g of fat per 100g raw. There is very little fat and almost no connective tissue to hold moisture in place, so when the muscle fibres hit heat they behave like a wrung-out sponge: the proteins denature at around 60–65°C, the fibre bundles contract lengthwise and sideways, and the water they were holding is squeezed out into the pan. That water loss is essentially the entire 28% the breast drops on the way to a 72% USDA yield.',
       'Because the loss is almost all water and barely any fat, the protein you started with stays in the meat. A 200g raw breast still contains about 45g of protein after cooking — it is just now packed into roughly 144g instead of 200g, which is why cooked chicken breast tests at around 31g protein per 100g while raw tests at 22.5g. Same protein, less water, denser meat.',
       'Chicken breast punishes overcooking harder than fattier cuts. With no fat or collagen buffering it, every extra minute past an internal 74°C drives off more water and pushes the yield down toward the mid-60s. Thin-pounded cutlets and small tenders lose a higher share than a thick whole breast because they have more surface area for evaporation relative to their mass.',
-      'This is the food most macro trackers get wrong in the same direction: they weigh the cooked breast, look up a raw-weight nutrition label, and quietly undercount their protein by a quarter. The fix is always to log the raw-weight equivalent, which is what this calculator returns whichever way you convert.',
+      'This is the food most macro trackers get wrong: they weigh the cooked breast, look up a raw-weight nutrition label, and quietly undercount their protein by a quarter. The fix is always to calculate the raw-weight equivalent using our raw to cooked chicken weight calculator.',
     ],
-    methodHeading: 'Baked vs. grilled vs. poached: a worked example',
+    methodHeading: 'Raw to Cooked Chicken Weight by Cooking Method: Baked vs. Grilled vs. Poached',
     method: [
       'Dry, high heat evaporates more surface moisture than gentle wet heat, so the cooking method moves the yield by about seven points. USDA figures for skinless breast: baked or roasted 72%, pan-fried 72%, grilled 70%, boiled or poached 77%.',
       'Start with a 200g raw breast. Baked at 200°C it comes out to 200 × 0.72 ≈ 144g cooked. Grilled over direct flame the same breast lands at 200 × 0.70 = 140g — the extra char and radiant heat cost you a few more grams. Poached in barely-simmering water it holds 200 × 0.77 = 154g, because the meat is surrounded by water instead of dry air and almost nothing evaporates.',

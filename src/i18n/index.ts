@@ -128,11 +128,24 @@ export function getFoodPageMeta(
   if (locale === 'en') {
     const yieldStr =
       food.yield_percent > 100 ? `${multiplier}× expansion` : `${food.yield_percent}% yield`;
+    
+    if (food.id === 'chicken-breast') {
+      return {
+        title: 'Raw to Cooked Chicken Weight Calculator | USDA Conversion (72%)',
+        description:
+          'Calculate raw to cooked chicken weight accurately. Convert raw chicken to cooked weight or cooked to raw with official USDA 72% yield, protein macros, and charts.',
+      };
+    }
+
+    if (food.category === 'meat_poultry_seafood') {
+      return {
+        title: `${shortName} Raw to Cooked Meat Weight Calculator | USDA ${yieldStr}`,
+        description: `Convert raw to cooked meat weight for ${fullName} (${yieldDesc.toLowerCase()}). Accurate raw to cooked meat weight conversion calculator with USDA yields and macros.`,
+      };
+    }
+
     return {
-      title:
-        food.id === 'chicken-breast'
-          ? 'Raw to Cooked Chicken Breast Calculator | USDA Yield: 72%'
-          : `${shortName} Raw to Cooked Calculator | USDA ${yieldStr}`,
+      title: `${shortName} Raw to Cooked Weight Calculator | USDA ${yieldStr}`,
       description:
         food.yield_percent > 100
           ? `${fullName} expands to ${multiplier}× its dry weight when cooked. Enter any amount to get the cooked weight plus calories, protein, carbs, and fat — USDA data.`

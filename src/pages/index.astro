@@ -17,15 +17,26 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebApplication',
-      name: 'Raw to Cooked Calculator',
+      name: 'Raw to Cooked Weight Conversion Calculator',
+      alternateName: [
+        'Raw to Cooked Calculator',
+        'Raw to Cooked Meat Weight Conversion Calculator',
+        'Raw to Cooked Chicken Weight Calculator',
+        'Food Cooking Yield Calculator',
+      ],
       url: BASE,
       description: t(locale, 'page.homeDescription'),
       applicationCategory: 'HealthApplication',
       operatingSystem: 'Any',
       browserRequirements: 'Requires JavaScript',
-      keywords: 'raw to cooked converter, raw to cooked calculator, raw to cooked weight conversion calculator, raw to cooked chicken weight, ground beef raw to cooked weight, raw to cooked rice ratio, raw to cooked meat weight conversion calculator, food converter, raw food, cooked food',
+      keywords: 'raw to cooked weight conversion calculator, raw to cooked meat weight conversion calculator, raw to cooked calculator, raw to cooked chicken weight, raw to cooked food converter, meat cooking yields, usda cooking yields',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       creator: { '@type': 'Organization', name: 'Raw to Cooked Calculator', url: BASE },
+    },
+    {
+      '@type': 'WebSite',
+      name: 'Raw to Cooked Calculator',
+      url: BASE,
     },
     {
       '@type': 'FAQPage',

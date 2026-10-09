@@ -50,6 +50,21 @@ const faqItems = getFoodFaqItems(locale, food);
 const relatedFoods = getAllFoods()
   .filter((f) => f.id !== food.id && f.category === food.category && hasPage(f))
   .slice(0, 5);
+
+const chickenWeightChart = [
+  { raw: '4.0 oz (113g)', cooked: '2.9 oz (82g)', protein: '25.5g', cals: '136 kcal', notes: 'Small cutlet' },
+  { raw: '6.0 oz (170g)', cooked: '4.3 oz (122g)', protein: '38.3g', cals: '204 kcal', notes: 'Standard portion' },
+  { raw: '8.0 oz (227g)', cooked: '5.8 oz (163g)', protein: '51.0g', cals: '272 kcal', notes: 'Single whole breast' },
+  { raw: '10.0 oz (283g)', cooked: '7.2 oz (204g)', protein: '63.8g', cals: '340 kcal', notes: 'Large chicken breast' },
+  { raw: '16.0 oz / 1 lb (454g)', cooked: '11.5 oz (327g)', protein: '102.2g', cals: '545 kcal', notes: '1 lb grocery tray' },
+  { raw: '100g (3.5 oz)', cooked: '72g (2.5 oz)', protein: '22.5g', cals: '120 kcal', notes: 'USDA 100g standard' },
+  { raw: '150g (5.3 oz)', cooked: '108g (3.8 oz)', protein: '33.8g', cals: '180 kcal', notes: 'Lunch portion' },
+  { raw: '200g (7.1 oz)', cooked: '144g (5.1 oz)', protein: '45.0g', cals: '240 kcal', notes: 'Standard fitness serving' },
+  { raw: '250g (8.8 oz)', cooked: '180g (6.3 oz)', protein: '56.3g', cals: '300 kcal', notes: 'High-protein portion' },
+  { raw: '300g (10.6 oz)', cooked: '216g (7.6 oz)', protein: '67.5g', cals: '360 kcal', notes: 'Post-workout dinner' },
+  { raw: '500g (1.1 lb)', cooked: '360g (12.7 oz)', protein: '112.5g', cals: '600 kcal', notes: 'Half-kilo batch prep' },
+  { raw: '1000g / 1 kg (2.2 lb)', cooked: '720g (25.4 oz)', protein: '225.0g', cals: '1200 kcal', notes: 'Weekly 1 kg bulk prep' },
+];
 ---
 
 <!-- Food hero -->
@@ -64,7 +79,11 @@ const relatedFoods = getAllFoods()
 
     <!-- H1 -->
     <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--color-ink)] tracking-[-1.5px] leading-tight mb-4">
-      {foodName}<br class="hidden sm:block" /> {t(locale, 'food.rawToCookedCalc')}
+      {locale === 'en' && isChicken ? (
+        <>Raw to Cooked Chicken Weight Calculator</>
+      ) : (
+        <>{foodName}<br class="hidden sm:block" /> {t(locale, 'food.rawToCookedCalc')}</>
+      )}
     </h1>
 
     <!-- Yield stat -->
@@ -199,6 +218,65 @@ const relatedFoods = getAllFoods()
     </div>
   </div>
 </section>
+
+<!-- Chicken Weight Conversion Chart (English only) -->
+{locale === 'en' && isChicken && (
+  <section class="border-t border-[var(--color-hairline)] bg-[var(--color-surface)]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--radius-pill)] bg-[var(--color-canvas)] border border-[var(--color-hairline)] text-xs font-mono text-[var(--color-mute)] uppercase tracking-wider mb-4">
+          USDA Yield Reference · 72% Cooking Yield
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[var(--color-ink)] tracking-tight mb-3">
+          Raw to Cooked Chicken Weight Conversion Table
+        </h2>
+        <p class="text-sm text-[var(--color-body)] leading-relaxed mb-6">
+          Use this quick conversion chart to calculate raw to cooked chicken weight for baked or roasted boneless, skinless chicken breast. Cooked chicken retains all original protein while losing ~28% of its mass to water evaporation.
+        </p>
+
+        <!-- Quick formulas -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div class="p-4 rounded-[var(--radius-md)] bg-[var(--color-canvas)] border border-[var(--color-hairline)]">
+            <p class="text-xs font-mono text-[var(--color-mute)] uppercase mb-1">To Get Cooked Chicken Weight:</p>
+            <p class="font-mono text-sm font-semibold text-[var(--color-ink)]">Cooked Weight = Raw Weight × 0.72</p>
+            <p class="text-xs text-[var(--color-mute)] mt-1">Example: 200g raw × 0.72 = 144g cooked</p>
+          </div>
+          <div class="p-4 rounded-[var(--radius-md)] bg-[var(--color-canvas)] border border-[var(--color-hairline)]">
+            <p class="text-xs font-mono text-[var(--color-mute)] uppercase mb-1">To Get Raw Chicken Weight Equivalent:</p>
+            <p class="font-mono text-sm font-semibold text-[var(--color-ink)]">Raw Weight = Cooked Weight ÷ 0.72</p>
+            <p class="text-xs text-[var(--color-mute)] mt-1">Example: 150g cooked ÷ 0.72 = 208g raw</p>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="overflow-x-auto rounded-[var(--radius-md)] border border-[var(--color-hairline)] bg-[var(--color-canvas)]">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-[var(--color-surface)] border-b border-[var(--color-hairline)] text-xs font-mono text-[var(--color-mute)] uppercase">
+              <tr>
+                <th class="py-3 px-4 font-medium">Raw Chicken Weight</th>
+                <th class="py-3 px-4 font-medium">Cooked Chicken Weight</th>
+                <th class="py-3 px-4 font-medium">Protein</th>
+                <th class="py-3 px-4 font-medium">Calories</th>
+                <th class="py-3 px-4 font-medium hidden sm:table-cell">Portion Context</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--color-hairline)]">
+              {chickenWeightChart.map((row) => (
+                <tr class="hover:bg-[var(--color-surface)] transition-colors">
+                  <td class="py-2.5 px-4 font-semibold text-[var(--color-ink)]">{row.raw}</td>
+                  <td class="py-2.5 px-4 font-mono text-[var(--color-link)] font-medium">{row.cooked}</td>
+                  <td class="py-2.5 px-4 font-mono text-[var(--color-body)]">{row.protein}</td>
+                  <td class="py-2.5 px-4 font-mono text-[var(--color-mute)]">{row.cals}</td>
+                  <td class="py-2.5 px-4 text-xs text-[var(--color-mute)] hidden sm:table-cell">{row.notes}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
 
 <!-- English long-form: how much raw to buy -->
 {hasLongform && longContent && (

@@ -10,25 +10,25 @@ const { locale = 'en' } = Astro.props;
 const prefix = getLangPrefix(locale);
 
 const cheatSheetItems = [
-  { food: 'Chicken Breast (Boneless, Skinless)', yieldPct: '72%', rtcMult: '0.72', ctrDiv: '0.72', direction: 'Shrinks 28%', example: '200g raw → 144g cooked' },
-  { food: 'Chicken Thighs (Boneless, Skinless)', yieldPct: '74%', rtcMult: '0.74', ctrDiv: '0.74', direction: 'Shrinks 26%', example: '200g raw → 148g cooked' },
-  { food: 'Ground Beef (80/20 Chuck)', yieldPct: '73%', rtcMult: '0.73', ctrDiv: '0.73', direction: 'Shrinks 27%', example: '200g raw → 146g cooked' },
-  { food: 'Ground Beef (90/10 Lean)', yieldPct: '81%', rtcMult: '0.81', ctrDiv: '0.81', direction: 'Shrinks 19%', example: '200g raw → 162g cooked' },
-  { food: 'Beef Sirloin Steak', yieldPct: '75%', rtcMult: '0.75', ctrDiv: '0.75', direction: 'Shrinks 25%', example: '250g raw → 188g cooked' },
-  { food: 'Pork Chops (Loin)', yieldPct: '78%', rtcMult: '0.78', ctrDiv: '0.78', direction: 'Shrinks 22%', example: '200g raw → 156g cooked' },
-  { food: 'Atlantic Salmon Fillet', yieldPct: '85%', rtcMult: '0.85', ctrDiv: '0.85', direction: 'Shrinks 15%', example: '200g raw → 170g cooked' },
+  { food: 'Chicken Breast (Boneless, Skinless)', slug: 'chicken', yieldPct: '72%', rtcMult: '0.72', ctrDiv: '0.72', direction: 'Shrinks 28%', example: '200g raw → 144g cooked' },
+  { food: 'Chicken Thighs (Boneless, Skinless)', slug: 'chicken-thigh', yieldPct: '74%', rtcMult: '0.74', ctrDiv: '0.74', direction: 'Shrinks 26%', example: '200g raw → 148g cooked' },
+  { food: 'Ground Beef (80/20 Chuck)', slug: 'beef', yieldPct: '73%', rtcMult: '0.73', ctrDiv: '0.73', direction: 'Shrinks 27%', example: '200g raw → 146g cooked' },
+  { food: 'Ground Beef (90/10 Lean)', slug: 'lean-beef', yieldPct: '81%', rtcMult: '0.81', ctrDiv: '0.81', direction: 'Shrinks 19%', example: '200g raw → 162g cooked' },
+  { food: 'Beef Sirloin Steak', slug: 'ribeye', yieldPct: '75%', rtcMult: '0.75', ctrDiv: '0.75', direction: 'Shrinks 25%', example: '250g raw → 188g cooked' },
+  { food: 'Pork Chops (Loin)', slug: 'pork', yieldPct: '78%', rtcMult: '0.78', ctrDiv: '0.78', direction: 'Shrinks 22%', example: '200g raw → 156g cooked' },
+  { food: 'Atlantic Salmon Fillet', slug: 'salmon', yieldPct: '85%', rtcMult: '0.85', ctrDiv: '0.85', direction: 'Shrinks 15%', example: '200g raw → 170g cooked' },
   { food: 'White Fish (Cod / Tilapia)', yieldPct: '80%', rtcMult: '0.80', ctrDiv: '0.80', direction: 'Shrinks 20%', example: '200g raw → 160g cooked' },
-  { food: 'Peeled Raw Shrimp', yieldPct: '75%', rtcMult: '0.75', ctrDiv: '0.75', direction: 'Shrinks 25%', example: '200g raw → 150g cooked' },
-  { food: 'White Rice (Long Grain / Jasmine)', yieldPct: '300%', rtcMult: '3.00', ctrDiv: '3.00', direction: 'Expands 3.0×', example: '100g dry → 300g cooked' },
-  { food: 'Brown Rice', yieldPct: '270%', rtcMult: '2.70', ctrDiv: '2.70', direction: 'Expands 2.7×', example: '100g dry → 270g cooked' },
-  { food: 'Dry Pasta / Spaghetti', yieldPct: '225%', rtcMult: '2.25', ctrDiv: '2.25', direction: 'Expands 2.25×', example: '100g dry → 225g cooked' },
+  { food: 'Peeled Raw Shrimp', slug: 'shrimp', yieldPct: '75%', rtcMult: '0.75', ctrDiv: '0.75', direction: 'Shrinks 25%', example: '200g raw → 150g cooked' },
+  { food: 'White Rice (Long Grain / Jasmine)', slug: 'rice', yieldPct: '300%', rtcMult: '3.00', ctrDiv: '3.00', direction: 'Expands 3.0×', example: '100g dry → 300g cooked' },
+  { food: 'Brown Rice', slug: 'brown-rice', yieldPct: '270%', rtcMult: '2.70', ctrDiv: '2.70', direction: 'Expands 2.7×', example: '100g dry → 270g cooked' },
+  { food: 'Dry Pasta / Spaghetti', slug: 'pasta', yieldPct: '225%', rtcMult: '2.25', ctrDiv: '2.25', direction: 'Expands 2.25×', example: '100g dry → 225g cooked' },
   { food: 'Rolled Oats (Oatmeal)', yieldPct: '300%', rtcMult: '3.00', ctrDiv: '3.00', direction: 'Expands 3.0×', example: '50g dry → 150g cooked' },
-  { food: 'Dry Quinoa', yieldPct: '310%', rtcMult: '3.10', ctrDiv: '3.10', direction: 'Expands 3.1×', example: '100g dry → 310g cooked' },
-  { food: 'Dry Brown Lentils', yieldPct: '290%', rtcMult: '2.90', ctrDiv: '2.90', direction: 'Expands 2.9×', example: '100g dry → 290g cooked' },
-  { food: 'Spinach (Boiled / Steamed)', yieldPct: '77%', rtcMult: '0.77', ctrDiv: '0.77', direction: 'Shrinks 23%', example: '200g raw → 154g cooked' },
-  { food: 'Broccoli Florets (Steamed)', yieldPct: '100%', rtcMult: '1.00', ctrDiv: '1.00', direction: 'No net change', example: '200g raw → 200g cooked' },
-  { food: 'Potato (Boiled / Baked)', yieldPct: '94%', rtcMult: '0.94', ctrDiv: '0.94', direction: 'Shrinks 6%', example: '200g raw → 188g cooked' },
-  { food: 'Sweet Potato (Baked)', yieldPct: '78%', rtcMult: '0.78', ctrDiv: '0.78', direction: 'Shrinks 22%', example: '200g raw → 156g cooked' },
+  { food: 'Dry Quinoa', slug: 'quinoa', yieldPct: '310%', rtcMult: '3.10', ctrDiv: '3.10', direction: 'Expands 3.1×', example: '100g dry → 310g cooked' },
+  { food: 'Dry Brown Lentils', slug: 'lentils', yieldPct: '290%', rtcMult: '2.90', ctrDiv: '2.90', direction: 'Expands 2.9×', example: '100g dry → 290g cooked' },
+  { food: 'Spinach (Boiled / Steamed)', slug: 'spinach', yieldPct: '77%', rtcMult: '0.77', ctrDiv: '0.77', direction: 'Shrinks 23%', example: '200g raw → 154g cooked' },
+  { food: 'Broccoli Florets (Steamed)', slug: 'broccoli', yieldPct: '100%', rtcMult: '1.00', ctrDiv: '1.00', direction: 'No net change', example: '200g raw → 200g cooked' },
+  { food: 'Potato (Boiled / Baked)', slug: 'potato', yieldPct: '94%', rtcMult: '0.94', ctrDiv: '0.94', direction: 'Shrinks 6%', example: '200g raw → 188g cooked' },
+  { food: 'Sweet Potato (Baked)', slug: 'sweet-potato', yieldPct: '78%', rtcMult: '0.78', ctrDiv: '0.78', direction: 'Shrinks 22%', example: '200g raw → 156g cooked' },
 ];
 ---
 
@@ -270,7 +270,15 @@ const cheatSheetItems = [
         <tbody class="divide-y divide-[var(--color-hairline)]">
           {cheatSheetItems.map((item) => (
             <tr class="hover:bg-[var(--color-canvas)] transition-colors">
-              <td class="py-2.5 px-4 font-medium text-[var(--color-ink)]">{item.food}</td>
+              <td class="py-2.5 px-4 font-medium text-[var(--color-ink)]">
+                {item.slug ? (
+                  <a href={`${prefix}/${item.slug}`} class="text-[var(--color-link)] hover:underline no-underline">
+                    {item.food}
+                  </a>
+                ) : (
+                  item.food
+                )}
+              </td>
               <td class="py-2.5 px-3 font-mono font-semibold text-[var(--color-ink)]">{item.yieldPct}</td>
               <td class="py-2.5 px-3 font-mono text-[var(--color-mute)]">× {item.rtcMult}</td>
               <td class="py-2.5 px-3 font-mono text-[var(--color-mute)]">÷ {item.ctrDiv}</td>
@@ -430,13 +438,27 @@ const cheatSheetItems = [
       Ready to Convert Your Ingredients?
     </h2>
     <p class="text-sm text-[var(--color-body)] max-w-xl mx-auto mb-6">
-      Select from over 20+ USDA-verified foods, toggle cooking methods, and instantly view the exact converted weights alongside complete protein, carbohydrate, fat, and calorie breakdowns.
+      Use our free raw to cooked weight conversion calculator for 20+ USDA-verified foods. Calculate cooked meat weight, raw chicken weight, and full macros with laboratory accuracy.
     </p>
-    <a
-      href={`${prefix}/`}
-      class="inline-flex items-center justify-center px-6 py-3 rounded-[var(--radius-pill)] bg-[var(--color-ink)] text-[var(--color-canvas)] text-sm font-medium hover:opacity-90 transition-opacity no-underline shadow-xs"
-    >
-      Open Free Raw to Cooked Calculator →
-    </a>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a
+        href={`${prefix}/`}
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-[var(--radius-pill)] bg-[var(--color-ink)] text-[var(--color-canvas)] text-sm font-medium hover:opacity-90 transition-opacity no-underline shadow-xs"
+      >
+        Raw to Cooked Weight Conversion Calculator →
+      </a>
+      <a
+        href={`${prefix}/chicken`}
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-[var(--radius-pill)] bg-[var(--color-surface)] border border-[var(--color-hairline)] text-[var(--color-ink)] text-sm font-medium hover:bg-[var(--color-hairline-soft)] transition-colors no-underline shadow-xs"
+      >
+        Raw to Cooked Chicken Weight Calculator →
+      </a>
+      <a
+        href={`${prefix}/beef`}
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-[var(--radius-pill)] bg-[var(--color-surface)] border border-[var(--color-hairline)] text-[var(--color-ink)] text-sm font-medium hover:bg-[var(--color-hairline-soft)] transition-colors no-underline shadow-xs"
+      >
+        Raw to Cooked Meat Weight Calculator →
+      </a>
+    </div>
   </section>
 </article>

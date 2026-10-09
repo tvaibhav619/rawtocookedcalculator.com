@@ -22,9 +22,9 @@ export const ui = {
 
     // Hero
     'hero.eyebrow': 'Based on USDA cooking yield data',
-    'hero.heading': 'Raw to Cooked Calculator',
+    'hero.heading': 'Raw to Cooked Weight Conversion Calculator',
     'hero.description':
-      'Cooked meat weighs 15–35% less than raw; rice and pasta weigh two to three times more. Enter any weight, raw or cooked, to convert it — with full macros (calories, protein, carbs, fat) for meat, grains, and vegetables.',
+      'Free raw to cooked weight conversion calculator and raw to cooked meat weight conversion calculator. Convert raw to cooked chicken weight, beef, pork, steak, rice, and pasta with USDA cooking yields and complete macronutrients.',
     'hero.usda':
       'All yields sourced from USDA FoodData Central, the USDA Table of Cooking Yields, and USDA Agriculture Handbook No. 102.',
 
@@ -110,7 +110,7 @@ export const ui = {
 
     // Footer
     'footer.tagline':
-      'USDA-sourced cooking yield data for meat, grains, and vegetables. Full macros for every conversion.',
+      'Free raw to cooked weight conversion calculator with USDA cooking yields for meat, chicken, grains, and produce. Full macros for every conversion.',
     'footer.popularFoods': 'Popular Foods',
     'footer.dataSources': 'Data Sources',
     'footer.usdaMeat': 'USDA Table of Cooking Yields for Meat and Poultry',
@@ -135,15 +135,15 @@ export const ui = {
       'Skinless, boneless chicken breast delivers roughly 22.5g of protein per 100g raw — one of the highest protein-per-calorie ratios of any whole food. At only 120 calories and 2.6g of fat per 100g raw, it\'s the go-to lean protein for bodybuilders, athletes, and anyone managing a caloric deficit.',
     'food.chickenP2':
       'Because chicken breast loses about 28% of its weight when cooked, <strong>logging the cooked weight against a raw-weight label undercounts your actual protein</strong>. A 150g cooked portion came from roughly 210g raw — 210g is the number to log against the USDA nutrition label.',
-    'food.calcHeading': '{name} Calculator',
+    'food.calcHeading': '{name} Weight Conversion Calculator',
     'food.faqHeading': 'Frequently asked questions',
     'food.relatedLabel': 'Related calculators',
     'food.allFoods': 'All foods →',
 
     // Page titles / SEO
-    'page.homeTitle': 'Free Raw to Cooked Calculator & Converter, No Login | USDA',
+    'page.homeTitle': 'Raw to Cooked Weight Conversion Calculator | Meat & Food Converter',
     'page.homeDescription':
-      'Free calculator & converter for 20+ foods. No login. Full macros (protein/carbs/fat) too, not just weight. Every yield % cited to USDA.',
+      'Free raw to cooked weight conversion calculator and raw to cooked meat weight conversion calculator. Convert raw to cooked chicken weight, beef, steak, and grains with USDA yields.',
     // Footer company links, yield descriptions, data-source labels
     "footer.company": "Company",
     "footer.about": "About Us",
