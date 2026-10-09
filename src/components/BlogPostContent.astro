@@ -1,0 +1,442 @@
+---
+import { getLangPrefix } from '../i18n';
+import type { Locale } from '../i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const prefix = getLangPrefix(locale);
+
+const cheatSheetItems = [
+  { food: 'Chicken Breast (Boneless, Skinless)', yieldPct: '72%', rtcMult: '0.72', ctrDiv: '0.72', direction: 'Shrinks 28%', example: '200g raw → 144g cooked' },
+  { food: 'Chicken Thighs (Boneless, Skinless)', yieldPct: '74%', rtcMult: '0.74', ctrDiv: '0.74', direction: 'Shrinks 26%', example: '200g raw → 148g cooked' },
+  { food: 'Ground Beef (80/20 Chuck)', yieldPct: '73%', rtcMult: '0.73', ctrDiv: '0.73', direction: 'Shrinks 27%', example: '200g raw → 146g cooked' },
+  { food: 'Ground Beef (90/10 Lean)', yieldPct: '81%', rtcMult: '0.81', ctrDiv: '0.81', direction: 'Shrinks 19%', example: '200g raw → 162g cooked' },
+  { food: 'Beef Sirloin Steak', yieldPct: '75%', rtcMult: '0.75', ctrDiv: '0.75', direction: 'Shrinks 25%', example: '250g raw → 188g cooked' },
+  { food: 'Pork Chops (Loin)', yieldPct: '78%', rtcMult: '0.78', ctrDiv: '0.78', direction: 'Shrinks 22%', example: '200g raw → 156g cooked' },
+  { food: 'Atlantic Salmon Fillet', yieldPct: '85%', rtcMult: '0.85', ctrDiv: '0.85', direction: 'Shrinks 15%', example: '200g raw → 170g cooked' },
+  { food: 'White Fish (Cod / Tilapia)', yieldPct: '80%', rtcMult: '0.80', ctrDiv: '0.80', direction: 'Shrinks 20%', example: '200g raw → 160g cooked' },
+  { food: 'Peeled Raw Shrimp', yieldPct: '75%', rtcMult: '0.75', ctrDiv: '0.75', direction: 'Shrinks 25%', example: '200g raw → 150g cooked' },
+  { food: 'White Rice (Long Grain / Jasmine)', yieldPct: '300%', rtcMult: '3.00', ctrDiv: '3.00', direction: 'Expands 3.0×', example: '100g dry → 300g cooked' },
+  { food: 'Brown Rice', yieldPct: '270%', rtcMult: '2.70', ctrDiv: '2.70', direction: 'Expands 2.7×', example: '100g dry → 270g cooked' },
+  { food: 'Dry Pasta / Spaghetti', yieldPct: '225%', rtcMult: '2.25', ctrDiv: '2.25', direction: 'Expands 2.25×', example: '100g dry → 225g cooked' },
+  { food: 'Rolled Oats (Oatmeal)', yieldPct: '300%', rtcMult: '3.00', ctrDiv: '3.00', direction: 'Expands 3.0×', example: '50g dry → 150g cooked' },
+  { food: 'Dry Quinoa', yieldPct: '310%', rtcMult: '3.10', ctrDiv: '3.10', direction: 'Expands 3.1×', example: '100g dry → 310g cooked' },
+  { food: 'Dry Brown Lentils', yieldPct: '290%', rtcMult: '2.90', ctrDiv: '2.90', direction: 'Expands 2.9×', example: '100g dry → 290g cooked' },
+  { food: 'Spinach (Boiled / Steamed)', yieldPct: '77%', rtcMult: '0.77', ctrDiv: '0.77', direction: 'Shrinks 23%', example: '200g raw → 154g cooked' },
+  { food: 'Broccoli Florets (Steamed)', yieldPct: '100%', rtcMult: '1.00', ctrDiv: '1.00', direction: 'No net change', example: '200g raw → 200g cooked' },
+  { food: 'Potato (Boiled / Baked)', yieldPct: '94%', rtcMult: '0.94', ctrDiv: '0.94', direction: 'Shrinks 6%', example: '200g raw → 188g cooked' },
+  { food: 'Sweet Potato (Baked)', yieldPct: '78%', rtcMult: '0.78', ctrDiv: '0.78', direction: 'Shrinks 22%', example: '200g raw → 156g cooked' },
+];
+---
+
+<article class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-2 text-xs font-mono text-[var(--color-mute)] mb-6" aria-label="Breadcrumb">
+    <a href={`${prefix}/`} class="hover:text-[var(--color-ink)] transition-colors no-underline">Home</a>
+    <span>/</span>
+    <a href="/blog" class="hover:text-[var(--color-ink)] transition-colors no-underline">Blog</a>
+    <span>/</span>
+    <span class="text-[var(--color-ink)]">How to Convert Raw Weight to Cooked Weight</span>
+  </nav>
+
+  <!-- Header -->
+  <header class="border-b border-[var(--color-hairline)] pb-8 mb-10">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--radius-pill)] bg-[var(--color-surface)] border border-[var(--color-hairline)] text-xs font-mono text-[var(--color-mute)] uppercase tracking-wider mb-4">
+      Culinary & Nutrition Science Guide
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-semibold text-[var(--color-ink)] tracking-tight leading-[1.15] mb-6 text-balance">
+      How Do I Convert Raw Weight to Cooked Weight?
+    </h1>
+    <p class="text-lg text-[var(--color-body)] leading-relaxed max-w-3xl mb-6">
+      Whether you are meal prepping for fitness, tracking macronutrients, or adjusting a recipe for dinner, converting between raw and cooked food weights is essential. Here is the exact mathematical framework, USDA yield percentages, and real-world kitchen examples.
+    </p>
+
+    <!-- Byline Meta -->
+    <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-[var(--color-mute)] pt-4 border-t border-[var(--color-hairline)]">
+      <span>By <strong class="text-[var(--color-ink)] font-medium">Vaibhav Tiwari</strong></span>
+      <span>•</span>
+      <span>Published: October 2026</span>
+      <span>•</span>
+      <span>Reading time: 9 min read</span>
+      <span>•</span>
+      <span class="text-[var(--color-link)]">USDA Yield Data Verified</span>
+    </div>
+  </header>
+
+  <!-- Quick Answer Callout -->
+  <div class="bg-[var(--color-surface)] border-2 border-[var(--color-hairline)] rounded-[var(--radius-md)] p-6 mb-12 shadow-xs">
+    <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--color-ink)] font-semibold mb-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+      Quick Answer: The Two Master Formulas
+    </div>
+    <p class="text-sm text-[var(--color-body)] leading-relaxed mb-4">
+      To convert food weight accurately, you only need the food’s <strong>USDA Cooking Yield Percentage</strong>. Yield is the ratio of final cooked weight compared to initial raw weight.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="p-4 bg-[var(--color-canvas)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <p class="text-xs font-mono text-[var(--color-mute)] uppercase mb-1">To get Cooked from Raw:</p>
+        <p class="font-mono text-sm font-semibold text-[var(--color-ink)] mb-2">Cooked Weight = Raw Weight × (Yield% ÷ 100)</p>
+        <p class="text-xs text-[var(--color-body)]"><em>Example:</em> 200g raw chicken breast × 0.72 = <strong>144g cooked</strong>.</p>
+      </div>
+      <div class="p-4 bg-[var(--color-canvas)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <p class="text-xs font-mono text-[var(--color-mute)] uppercase mb-1">To get Raw from Cooked:</p>
+        <p class="font-mono text-sm font-semibold text-[var(--color-ink)] mb-2">Raw Weight = Cooked Weight ÷ (Yield% ÷ 100)</p>
+        <p class="text-xs text-[var(--color-body)]"><em>Example:</em> 144g cooked chicken breast ÷ 0.72 = <strong>200g raw equivalent</strong>.</p>
+      </div>
+    </div>
+    <div class="mt-4 pt-3 border-t border-[var(--color-hairline)] flex items-center justify-between text-xs">
+      <span class="text-[var(--color-mute)]">Need to convert right now without doing manual math?</span>
+      <a href={`${prefix}/`} class="text-[var(--color-link)] font-semibold hover:underline">Use our Free Raw to Cooked Calculator →</a>
+    </div>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="bg-[var(--color-canvas)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] p-5 mb-12">
+    <p class="text-xs font-mono font-medium text-[var(--color-mute)] uppercase tracking-wider mb-3">Table of Contents</p>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+      <li><a href="#why-weights-change" class="text-[var(--color-body)] hover:text-[var(--color-ink)] no-underline">1. Why Raw and Cooked Weights Differ</a></li>
+      <li><a href="#the-mathematics" class="text-[var(--color-body)] hover:text-[var(--color-ink)] no-underline">2. The Mathematics of Weight Conversion</a></li>
+      <li><a href="#worked-examples" class="text-[var(--color-body)] hover:text-[var(--color-ink)] no-underline">3. Step-by-Step Worked Kitchen Examples</a></li>
+      <li><a href="#master-cheat-sheet" class="text-[var(--color-body)] hover:text-[var(--color-ink)] no-underline">4. Master Raw-to-Cooked Conversion Cheat Sheet</a></li>
+      <li><a href="#macro-tracking-trap" class="text-[var(--color-body)] hover:text-[var(--color-ink)] no-underline">5. The Calorie & Macro Tracking Trap</a></li>
+      <li><a href="#batch-cooking" class="text-[var(--color-body)] hover:text-[var(--color-ink)] no-underline">6. Batch Cooking & Meal Prepping Strategies</a></li>
+      <li><a href="#cooking-variables" class="text-[var(--color-body)] hover:text-[var(--color-ink)] no-underline">7. How Cooking Methods Alter Final Yields</a></li>
+      <li><a href="#faq" class="text-[var(--color-body)] hover:text-[var(--color-ink)] no-underline">8. Frequently Asked Questions</a></li>
+    </ul>
+  </div>
+
+  <!-- Content Section 1 -->
+  <section id="why-weights-change" class="mb-12">
+    <h2 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      1. Why Raw and Cooked Food Weigh Differently
+    </h2>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      When you place food on a hot pan or in boiling water, physical and chemical transformations take place immediately. The discrepancy between what goes into the cooking vessel and what comes out is governed by moisture dynamics:
+    </p>
+    <div class="space-y-4 mb-6">
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h3 class="text-sm font-semibold text-[var(--color-ink)] mb-1">Meats and Seafood Lose Mass (Shrinkage)</h3>
+        <p class="text-sm text-[var(--color-body)] leading-relaxed">
+          Raw animal muscle tissue is comprised of roughly 70% to 75% water, held tightly within cellular myofibrils. As heat increases past 105°F (40°C), proteins (myosin and actin) denature and contract, squeezing intracellular moisture out into the skillet or roasting pan. Concurrently, solid animal lipids liquefy and render out. Consequently, cooked meats weigh between <strong>15% and 35% less</strong> than their raw state.
+        </p>
+      </div>
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h3 class="text-sm font-semibold text-[var(--color-ink)] mb-1">Grains, Starches, and Legumes Gain Mass (Hydration Expansion)</h3>
+        <p class="text-sm text-[var(--color-body)] leading-relaxed">
+          Grains such as rice, quinoa, and pasta enter the pot in a dry, dehydrated state (typically containing less than 12% moisture). When submerged in boiling water, starch granules absorb water through capillary action and undergo starch gelatinization. This process causes grains to swell and weigh <strong>2.0 to 3.2 times more</strong> than their raw dry state.
+        </p>
+      </div>
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h3 class="text-sm font-semibold text-[var(--color-ink)] mb-1">Vegetables: Structural Wilt vs. Moisture Retention</h3>
+        <p class="text-sm text-[var(--color-body)] leading-relaxed">
+          Leafy greens like spinach, kale, and cabbage contain large air pockets within their cellular structure. When exposed to heat, the cell walls soften, air escapes, and the volume collapses dramatically. However, their actual weight loss is only around 20% to 25%, despite appearing to shrink down to ten percent of their original visual volume.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section 2 -->
+  <section id="the-mathematics" class="mb-12">
+    <h2 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      2. The Mathematics of Weight Conversion
+    </h2>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      Understanding the relationship between raw and cooked weights requires just one foundational variable: the <strong>Yield Percentage (Yield %)</strong>. Sourced scientifically from research published by the United States Department of Agriculture (USDA), yield is defined as:
+    </p>
+
+    <div class="bg-[var(--color-canvas)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)] p-4 font-mono text-sm text-center mb-6">
+      Yield % = (Cooked Weight ÷ Raw Weight) × 100
+    </div>
+
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      Once you know the yield percentage for your food, you can convert in either direction with elementary algebra:
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="border-l-3 border-[var(--color-ink)] pl-4 py-1">
+        <p class="font-semibold text-sm text-[var(--color-ink)] mb-1">Direction A: Converting Raw Weight to Cooked Weight</p>
+        <p class="text-sm text-[var(--color-body)] leading-relaxed mb-2">
+          When you have raw ingredients and need to predict how much finished food you will have on your plate:
+        </p>
+        <code class="block font-mono text-xs bg-[var(--color-surface)] p-2.5 rounded border border-[var(--color-hairline)] text-[var(--color-ink)]">
+          Cooked Weight = Raw Weight × (Yield % ÷ 100)
+        </code>
+      </div>
+
+      <div class="border-l-3 border-[var(--color-ink)] pl-4 py-1">
+        <p class="font-semibold text-sm text-[var(--color-ink)] mb-1">Direction B: Converting Cooked Weight to Raw Weight Equivalent</p>
+        <p class="text-sm text-[var(--color-body)] leading-relaxed mb-2">
+          When you only have a food scale available after cooking (e.g., meal-prepped chicken from the fridge), you must convert back to raw to match standard nutrition facts tables:
+        </p>
+        <code class="block font-mono text-xs bg-[var(--color-surface)] p-2.5 rounded border border-[var(--color-hairline)] text-[var(--color-ink)]">
+          Raw Weight Equivalent = Cooked Weight ÷ (Yield % ÷ 100)
+        </code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section 3 -->
+  <section id="worked-examples" class="mb-12">
+    <h2 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      3. Step-by-Step Worked Kitchen Examples
+    </h2>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-6">
+      Let us work through four concrete, real-world examples in both grams and ounces so you can see how the math plays out in everyday cooking.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Example 1 -->
+      <div class="bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] p-5">
+        <div class="text-xs font-mono font-medium text-[var(--color-mute)] uppercase tracking-wider mb-2">Example 1: Chicken Breast (Raw to Cooked)</div>
+        <h3 class="text-base font-semibold text-[var(--color-ink)] mb-2">You have 250g of raw chicken breast. What will it weigh cooked?</h3>
+        <ul class="text-xs text-[var(--color-body)] space-y-2 mb-3">
+          <li>• USDA Yield for skinless chicken breast = <strong>72%</strong> (multiplier 0.72)</li>
+          <li>• Formula: 250g × 0.72 = <strong>180g cooked</strong></li>
+          <li>• <em>In ounces:</em> 8.8 oz raw × 0.72 = <strong>6.3 oz cooked</strong></li>
+        </ul>
+        <p class="text-xs text-[var(--color-mute)] border-t border-[var(--color-hairline)] pt-2">
+          Result: You lose 70g (28%) of water and juice during grilling or baking.
+        </p>
+      </div>
+
+      <!-- Example 2 -->
+      <div class="bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] p-5">
+        <div class="text-xs font-mono font-medium text-[var(--color-mute)] uppercase tracking-wider mb-2">Example 2: Cooked Beef to Raw Equivalent</div>
+        <h3 class="text-base font-semibold text-[var(--color-ink)] mb-2">You scooped 150g of cooked 80/20 ground beef. How much raw was that?</h3>
+        <ul class="text-xs text-[var(--color-body)] space-y-2 mb-3">
+          <li>• USDA Yield for 80/20 ground beef = <strong>73%</strong> (divisor 0.73)</li>
+          <li>• Formula: 150g ÷ 0.73 = <strong>205.5g raw equivalent</strong></li>
+          <li>• <em>In ounces:</em> 5.3 oz cooked ÷ 0.73 = <strong>7.25 oz raw equivalent</strong></li>
+        </ul>
+        <p class="text-xs text-[var(--color-mute)] border-t border-[var(--color-hairline)] pt-2">
+          Result: To log accurate raw nutrition facts, enter 206g into your tracking app.
+        </p>
+      </div>
+
+      <!-- Example 3 -->
+      <div class="bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] p-5">
+        <div class="text-xs font-mono font-medium text-[var(--color-mute)] uppercase tracking-wider mb-2">Example 3: Dry White Rice to Cooked Rice</div>
+        <h3 class="text-base font-semibold text-[var(--color-ink)] mb-2">You measure 80g of dry white jasmine rice. How much cooked rice will you get?</h3>
+        <ul class="text-xs text-[var(--color-body)] space-y-2 mb-3">
+          <li>• USDA Yield for white rice = <strong>300%</strong> (multiplier 3.0)</li>
+          <li>• Formula: 80g × 3.0 = <strong>240g cooked rice</strong></li>
+          <li>• <em>In ounces:</em> 2.8 oz dry × 3.0 = <strong>8.4 oz cooked rice</strong></li>
+        </ul>
+        <p class="text-xs text-[var(--color-mute)] border-t border-[var(--color-hairline)] pt-2">
+          Result: White rice triples in weight by absorbing 160g of cooking water.
+        </p>
+      </div>
+
+      <!-- Example 4 -->
+      <div class="bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] p-5">
+        <div class="text-xs font-mono font-medium text-[var(--color-mute)] uppercase tracking-wider mb-2">Example 4: Cooked Pasta back to Dry Weight</div>
+        <h3 class="text-base font-semibold text-[var(--color-ink)] mb-2">You served 200g of cooked spaghetti. How much dry pasta did you consume?</h3>
+        <ul class="text-xs text-[var(--color-body)] space-y-2 mb-3">
+          <li>• USDA Yield for regular pasta = <strong>225%</strong> (divisor 2.25)</li>
+          <li>• Formula: 200g ÷ 2.25 = <strong>88.9g dry pasta</strong></li>
+          <li>• <em>In ounces:</em> 7.0 oz cooked ÷ 2.25 = <strong>3.1 oz dry pasta</strong></li>
+        </ul>
+        <p class="text-xs text-[var(--color-mute)] border-t border-[var(--color-hairline)] pt-2">
+          Result: Logging 89g of dry pasta matches the manufacturer's nutrition panel.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section 4: Master Table -->
+  <section id="master-cheat-sheet" class="mb-12">
+    <h2 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-2">
+      4. Master Raw-to-Cooked Conversion Cheat Sheet
+    </h2>
+    <p class="text-sm text-[var(--color-body)] leading-relaxed mb-6">
+      Bookmark this table for fast daily kitchen conversions. Every value reflects standard USDA cooking yields measured by food scientists:
+    </p>
+
+    <div class="overflow-x-auto border border-[var(--color-hairline)] rounded-[var(--radius-md)] bg-[var(--color-surface)]">
+      <table class="w-full text-left text-xs sm:text-sm border-collapse">
+        <thead>
+          <tr class="border-b border-[var(--color-hairline)] bg-[var(--color-hairline-soft)] text-[var(--color-ink)] font-mono font-semibold">
+            <th class="py-3 px-4">Food Item</th>
+            <th class="py-3 px-3">USDA Yield</th>
+            <th class="py-3 px-3">Raw→Cooked</th>
+            <th class="py-3 px-3">Cooked→Raw</th>
+            <th class="py-3 px-4 hidden sm:table-cell">Transformation</th>
+            <th class="py-3 px-4">Example Conversion</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[var(--color-hairline)]">
+          {cheatSheetItems.map((item) => (
+            <tr class="hover:bg-[var(--color-canvas)] transition-colors">
+              <td class="py-2.5 px-4 font-medium text-[var(--color-ink)]">{item.food}</td>
+              <td class="py-2.5 px-3 font-mono font-semibold text-[var(--color-ink)]">{item.yieldPct}</td>
+              <td class="py-2.5 px-3 font-mono text-[var(--color-mute)]">× {item.rtcMult}</td>
+              <td class="py-2.5 px-3 font-mono text-[var(--color-mute)]">÷ {item.ctrDiv}</td>
+              <td class="py-2.5 px-4 text-[var(--color-body)] hidden sm:table-cell">{item.direction}</td>
+              <td class="py-2.5 px-4 font-mono text-xs text-[var(--color-body)]">{item.example}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Content Section 5: The Tracking Trap -->
+  <section id="macro-tracking-trap" class="mb-12">
+    <h2 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      5. The Calorie & Macro Tracking Trap: Why Accuracy Matters
+    </h2>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      If you track your calories and macros using mobile apps like MyFitnessPal, Cronometer, MacroFactor, or Lose It!, the distinction between raw and cooked weights is critical. Failing to convert correctly is one of the most common reasons why people inadvertently stall their fitness progress.
+    </p>
+
+    <div class="bg-[var(--color-surface)] border border-amber-300 dark:border-amber-900 rounded-[var(--radius-md)] p-6 mb-6">
+      <h3 class="text-base font-semibold text-[var(--color-ink)] mb-2 flex items-center gap-2">
+        <span class="text-amber-500 font-bold">⚠</span> The Fatal "Cooked Chicken" Logging Mistake
+      </h3>
+      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-3">
+        Suppose you bake a batch of chicken breasts, weigh 150g of cooked chicken on your plate, and search your app for "Chicken Breast". If the entry corresponds to standard raw chicken:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono bg-[var(--color-canvas)] p-4 rounded border border-[var(--color-hairline)]">
+        <div>
+          <p class="text-[var(--color-mute)] uppercase mb-1">What you entered (150g Raw Entry):</p>
+          <p class="text-[var(--color-ink)] font-semibold">180 Calories</p>
+          <p class="text-[var(--color-ink)]">33.8g Protein</p>
+          <p class="text-[var(--color-ink)]">3.9g Fat</p>
+        </div>
+        <div>
+          <p class="text-emerald-600 dark:text-emerald-400 uppercase mb-1 font-semibold">What you ACTUALLY ate (208g Raw Eq.):</p>
+          <p class="text-[var(--color-ink)] font-semibold">250 Calories (+70 kcal error)</p>
+          <p class="text-[var(--color-ink)]">46.8g Protein (+13g protein error)</p>
+          <p class="text-[var(--color-ink)]">5.4g Fat</p>
+        </div>
+      </div>
+      <p class="text-xs text-[var(--color-body)] mt-3">
+        By logging cooked weight against a raw label, you undercounted your intake by <strong>70 calories and 13 grams of protein</strong> in a single meal. Over three meals a day, that compounds to an unrecorded 210 calories!
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold text-[var(--color-ink)] mb-2">The Opposite Mistake: The "Cooked Rice" Calorie Spike</h3>
+      <p class="text-sm text-[var(--color-body)] leading-relaxed">
+        With grains, the mistake works in reverse. If you eat 200g of fluffy cooked white rice and log it using a generic dry rice entry, your app assumes you ate 200g of dry rice—recording roughly <strong>730 calories</strong> instead of the true <strong>245 calories</strong>. Many people panic thinking they overate carbs, when in reality two-thirds of that bowl was pure zero-calorie hydration.
+      </p>
+    </div>
+  </section>
+
+  <!-- Content Section 6: Batch Cooking -->
+  <section id="batch-cooking" class="mb-12">
+    <h2 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      6. Batch Cooking & Meal Prepping Strategies
+    </h2>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      Meal prepping large quantities of food introduces the "shared pot problem": you cook 2 kilograms of raw meat and 500 grams of dry rice simultaneously, which then leaves you with a finished multi-serving dish. How do you divide this accurately?
+    </p>
+
+    <div class="space-y-4">
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h3 class="text-sm font-semibold text-[var(--color-ink)] mb-1">Strategy A: The Total Cooked Tare Method (Most Accurate)</h3>
+        <ol class="list-decimal list-inside text-xs sm:text-sm text-[var(--color-body)] space-y-1.5">
+          <li>Weigh your empty cooking pot before cooking and record the number (e.g., 850g).</li>
+          <li>Weigh all raw ingredients into the pot and calculate total raw calories/macros.</li>
+          <li>After cooking, weigh the entire hot pot with food (e.g., 2,350g).</li>
+          <li>Subtract the pot tare: 2,350g − 850g = 1,500g net cooked food.</li>
+          <li>Calculate macro density: <code>Total Raw Calories ÷ 1,500g = Calories per cooked gram</code>. Whenever you dish out a portion, multiply by your serving weight!</li>
+        </ol>
+      </div>
+
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h3 class="text-sm font-semibold text-[var(--color-ink)] mb-1">Strategy B: The Equal Container Division Method (Fastest)</h3>
+        <p class="text-xs sm:text-sm text-[var(--color-body)] leading-relaxed">
+          If you are cooking exclusively for yourself across the week, simply divide the finished batch as evenly as possible into 5 containers. Log exactly 1/5th of the raw ingredients into your tracking app for each day. Even if Monday's container has slightly more chicken than Thursday's container, your 7-day average will be 100% mathematically exact!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section 7: Variables -->
+  <section id="cooking-variables" class="mb-12">
+    <h2 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      7. How Cooking Methods Alter Final Yields
+    </h2>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      While USDA yield percentages provide the scientific standard, your cooking technique impacts moisture retention:
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h3 class="text-xs font-mono font-medium text-[var(--color-ink)] uppercase mb-2">High Dry Heat (Air Fryer / Grill)</h3>
+        <p class="text-xs text-[var(--color-body)] leading-relaxed">
+          Intense convection currents and open grates maximize water evaporation. Meat cooked here yields closer to <strong>68% to 70%</strong>.
+        </p>
+      </div>
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h3 class="text-xs font-mono font-medium text-[var(--color-ink)] uppercase mb-2">Moist Heat (Braise / Slow Cook)</h3>
+        <p class="text-xs text-[var(--color-body)] leading-relaxed">
+          Lids trap steam inside the cooking vessel. While moisture leaves muscle fibers, it remains suspended in the sauce, yielding <strong>75% to 78%</strong>.
+        </p>
+      </div>
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h3 class="text-xs font-mono font-medium text-[var(--color-ink)] uppercase mb-2">Sous-Vide Precision</h3>
+        <p class="text-xs text-[var(--color-body)] leading-relaxed">
+          Vacuum-sealed bags prevent any evaporative moisture loss whatsoever. Yields are the highest of any method: <strong>80% to 84%</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section 8: FAQ -->
+  <section id="faq" class="mb-12">
+    <h2 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-6">
+      8. Frequently Asked Questions
+    </h2>
+
+    <div class="space-y-4">
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)]">
+        <h3 class="text-sm font-semibold text-[var(--color-ink)] mb-2">Should I weigh my food raw or cooked?</h3>
+        <p class="text-xs sm:text-sm text-[var(--color-body)] leading-relaxed">
+          Weighing raw is the gold standard of nutritional tracking. Raw food weight eliminates all human cooking variables (cooking time, pan temperature, dryness level). However, when eating at restaurants or meal prepping, converting cooked weight using our USDA yield converter is completely sufficient.
+        </p>
+      </div>
+
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)]">
+        <h3 class="text-sm font-semibold text-[var(--color-ink)] mb-2">What happens to the fat rendered from ground beef?</h3>
+        <p class="text-xs sm:text-sm text-[var(--color-body)] leading-relaxed">
+          When cooking 80/20 ground beef, both water and liquefied tallow render out. If you drain the liquid fat completely and discard it, your remaining beef will have lower calories and lower fat than the raw label indicates. If you simmer the beef in a chili or pasta sauce, the fat stays in the meal and all raw calories must be counted.
+        </p>
+      </div>
+
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)]">
+        <h3 class="text-sm font-semibold text-[var(--color-ink)] mb-2">How do bone-in cuts like chicken wings or T-bone steaks work?</h3>
+        <p class="text-xs sm:text-sm text-[var(--color-body)] leading-relaxed">
+          Bones provide zero consumable calories. Weigh the raw bone-in cut before cooking, eat the meat, and then weigh the clean leftover bones. Subtract the bone weight from the raw weight to determine your true edible mass.
+        </p>
+      </div>
+
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)]">
+        <h3 class="text-sm font-semibold text-[var(--color-ink)] mb-2">Does reheating cooked food alter its macros?</h3>
+        <p class="text-xs sm:text-sm text-[var(--color-body)] leading-relaxed">
+          Reheating in a microwave or oven may evaporate another 2% to 4% of water steam, making the portion slightly lighter. However, macronutrients (proteins, carbohydrates, fats) remain unchanged. Moisture loss never reduces caloric content.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conversion CTA Box -->
+  <section class="border-t border-[var(--color-hairline)] pt-10 text-center">
+    <h2 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-3">
+      Ready to Convert Your Ingredients?
+    </h2>
+    <p class="text-sm text-[var(--color-body)] max-w-xl mx-auto mb-6">
+      Select from over 20+ USDA-verified foods, toggle cooking methods, and instantly view the exact converted weights alongside complete protein, carbohydrate, fat, and calorie breakdowns.
+    </p>
+    <a
+      href={`${prefix}/`}
+      class="inline-flex items-center justify-center px-6 py-3 rounded-[var(--radius-pill)] bg-[var(--color-ink)] text-[var(--color-canvas)] text-sm font-medium hover:opacity-90 transition-opacity no-underline shadow-xs"
+    >
+      Open Free Raw to Cooked Calculator →
+    </a>
+  </section>
+</article>

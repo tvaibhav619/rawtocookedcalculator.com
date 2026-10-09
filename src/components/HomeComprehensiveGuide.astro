@@ -1,0 +1,320 @@
+---
+import { getLangPrefix } from '../i18n';
+import type { Locale } from '../i18n';
+import { getGuide } from '../i18n/guide';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const prefix = getLangPrefix(locale);
+const guide = getGuide(locale);
+---
+
+<article class="max-w-4xl mx-auto px-4 sm:px-6 py-14 sm:py-16 border-t border-[var(--color-hairline)]">
+  <!-- Article Header -->
+  <header class="mb-12 border-b border-[var(--color-hairline)] pb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--radius-pill)] bg-[var(--color-surface)] border border-[var(--color-hairline)] text-xs font-mono text-[var(--color-mute)] uppercase tracking-wider mb-4">
+      {guide.badge}
+    </div>
+    <h2 class="text-3xl sm:text-4xl font-semibold text-[var(--color-ink)] tracking-tight leading-tight mb-4">
+      {guide.title}
+    </h2>
+    <p class="text-base sm:text-lg text-[var(--color-body)] leading-relaxed max-w-3xl">
+      {guide.intro}
+    </p>
+  </header>
+
+  <!-- Section 1 -->
+  <section class="mb-14">
+    <h3 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      {guide.sec1Title}
+    </h3>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      {guide.sec1Intro}
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)]">
+        <h4 class="text-base font-semibold text-[var(--color-ink)] mb-2">{guide.sec1ProteinTitle}</h4>
+        <p class="text-sm text-[var(--color-body)] leading-relaxed mb-3">
+          {guide.sec1ProteinText}
+        </p>
+        <ul class="text-xs text-[var(--color-body)] space-y-2">
+          {guide.sec1ProteinBullets.map((bullet) => (
+            <li>• {bullet}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)]">
+        <h4 class="text-base font-semibold text-[var(--color-ink)] mb-2">{guide.sec1StarchTitle}</h4>
+        <p class="text-sm text-[var(--color-body)] leading-relaxed mb-3">
+          {guide.sec1StarchText}
+        </p>
+        <ul class="text-xs text-[var(--color-body)] space-y-2">
+          {guide.sec1StarchBullets.map((bullet) => (
+            <li>• {bullet}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <p class="text-sm text-[var(--color-body)] leading-relaxed">
+      {guide.sec1VegText}
+    </p>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="mb-14">
+    <h3 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      {guide.sec2Title}
+    </h3>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      {guide.sec2Intro}
+    </p>
+
+    <div class="bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] p-6 my-6 font-mono text-center">
+      <div class="text-xs text-[var(--color-mute)] uppercase tracking-wider mb-2">{guide.sec2EquationLabel}</div>
+      <p class="text-base sm:text-lg font-semibold text-[var(--color-ink)]">
+        {guide.sec2Equation}
+      </p>
+    </div>
+
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      {guide.sec2SubIntro}
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 my-6">
+      <div class="p-5 bg-[var(--color-surface)] border-l-4 border-l-[var(--color-ink)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h4 class="text-sm font-semibold text-[var(--color-ink)] uppercase tracking-wider mb-2 font-mono">{guide.sec2FormulaATitle}</h4>
+        <p class="text-xs text-[var(--color-body)] leading-relaxed mb-3">
+          {guide.sec2FormulaADesc}
+        </p>
+        <code class="block font-mono text-xs bg-[var(--color-canvas)] p-3 rounded border border-[var(--color-hairline)] text-[var(--color-ink)] mb-3">
+          {guide.sec2FormulaACode}
+        </code>
+        <p class="text-xs text-[var(--color-body)]" set:html={guide.sec2FormulaAExampleHtml} />
+      </div>
+
+      <div class="p-5 bg-[var(--color-surface)] border-l-4 border-l-[var(--color-ink)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h4 class="text-sm font-semibold text-[var(--color-ink)] uppercase tracking-wider mb-2 font-mono">{guide.sec2FormulaBTitle}</h4>
+        <p class="text-xs text-[var(--color-body)] leading-relaxed mb-3">
+          {guide.sec2FormulaBDesc}
+        </p>
+        <code class="block font-mono text-xs bg-[var(--color-canvas)] p-3 rounded border border-[var(--color-hairline)] text-[var(--color-ink)] mb-3">
+          {guide.sec2FormulaBCode}
+        </code>
+        <p class="text-xs text-[var(--color-body)]" set:html={guide.sec2FormulaBExampleHtml} />
+      </div>
+    </div>
+
+    <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)] text-xs text-[var(--color-body)] leading-relaxed" set:html={guide.sec2ShrinkageNoteHtml} />
+  </section>
+
+  <!-- Section 3: Master Table -->
+  <section class="mb-14">
+    <h3 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-2">
+      {guide.sec3Title}
+    </h3>
+    <p class="text-sm text-[var(--color-body)] leading-relaxed mb-6">
+      {guide.sec3Intro}
+    </p>
+
+    <div class="overflow-x-auto border border-[var(--color-hairline)] rounded-[var(--radius-md)] bg-[var(--color-surface)] shadow-xs">
+      <table class="w-full text-left text-xs sm:text-sm border-collapse">
+        <thead>
+          <tr class="border-b border-[var(--color-hairline)] bg-[var(--color-hairline-soft)] text-[var(--color-ink)] font-mono font-semibold">
+            <th class="py-3 px-3 sm:px-4">{guide.sec3ColFood}</th>
+            <th class="py-3 px-2 sm:px-3">{guide.sec3ColMethod}</th>
+            <th class="py-3 px-2 sm:px-3">{guide.sec3ColYield}</th>
+            <th class="py-3 px-2 sm:px-3">{guide.sec3ColRtc}</th>
+            <th class="py-3 px-2 sm:px-3">{guide.sec3ColCtr}</th>
+            <th class="py-3 px-3 sm:px-4 hidden md:table-cell">{guide.sec3ColMoisture}</th>
+            <th class="py-3 px-3 sm:px-4">{guide.sec3ColNotes}</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[var(--color-hairline)]">
+          {guide.tableRows.map((row) => (
+            <tr class="hover:bg-[var(--color-canvas)] transition-colors">
+              <td class="py-3 px-3 sm:px-4 font-medium text-[var(--color-ink)]">{row.food}</td>
+              <td class="py-3 px-2 sm:px-3 text-xs text-[var(--color-mute)]">{row.method}</td>
+              <td class="py-3 px-2 sm:px-3 font-mono font-semibold text-[var(--color-ink)]">{row.yieldPct}</td>
+              <td class="py-3 px-2 sm:px-3 font-mono text-[var(--color-body)]">{row.rtc}</td>
+              <td class="py-3 px-2 sm:px-3 font-mono text-[var(--color-body)]">{row.ctr}</td>
+              <td class="py-3 px-3 sm:px-4 text-xs text-[var(--color-body)] hidden md:table-cell">{row.moisture}</td>
+              <td class="py-3 px-3 sm:px-4 text-xs text-[var(--color-body)]">{row.notes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="mb-14">
+    <h3 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      {guide.sec4Title}
+    </h3>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      {guide.sec4Intro}
+    </p>
+
+    <div class="p-6 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] mb-6">
+      <h4 class="text-base font-semibold text-[var(--color-ink)] mb-3">{guide.sec4CardTitle}</h4>
+      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-4">
+        {guide.sec4CardText}
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono bg-[var(--color-canvas)] p-4 rounded border border-[var(--color-hairline)]">
+        <div>
+          <p class="text-[var(--color-mute)] uppercase font-semibold mb-1">{guide.sec4RawLabel}</p>
+          <p class="text-[var(--color-ink)] font-semibold">{guide.sec4RawCals}</p>
+          <p class="text-[var(--color-ink)]">{guide.sec4RawProtein}</p>
+          <p class="text-[var(--color-ink)]">{guide.sec4RawFat}</p>
+        </div>
+        <div>
+          <p class="text-[var(--color-mute)] uppercase font-semibold mb-1">{guide.sec4CookedLabel}</p>
+          <p class="text-[var(--color-ink)] font-semibold">{guide.sec4CookedCals}</p>
+          <p class="text-[var(--color-ink)]">{guide.sec4CookedProtein}</p>
+          <p class="text-[var(--color-ink)]">{guide.sec4CookedFat}</p>
+        </div>
+      </div>
+      <p class="text-xs text-[var(--color-body)] mt-3 leading-relaxed" set:html={guide.sec4CardSummaryHtml} />
+    </div>
+
+    <div class="space-y-4">
+      <h4 class="text-lg font-semibold text-[var(--color-ink)]">{guide.sec4TrapTitle}</h4>
+      <p class="text-sm text-[var(--color-body)] leading-relaxed">
+        {guide.sec4TrapP1}
+      </p>
+      <p class="text-sm text-[var(--color-body)] leading-relaxed" set:html={guide.sec4TrapP2Html} />
+      <p class="text-sm text-[var(--color-body)] leading-relaxed">
+        {guide.sec4TrapP3}
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 5 -->
+  <section class="mb-14">
+    <h3 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      {guide.sec5Title}
+    </h3>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      {guide.sec5Intro}
+    </p>
+
+    <div class="space-y-4 my-6">
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h4 class="text-sm font-semibold text-[var(--color-ink)] mb-2">{guide.sec5Strat1Title}</h4>
+        <p class="text-xs sm:text-sm text-[var(--color-body)] leading-relaxed mb-3">
+          {guide.sec5Strat1Desc}
+        </p>
+        <ol class="list-decimal list-inside text-xs sm:text-sm text-[var(--color-body)] space-y-1.5">
+          {guide.sec5Strat1StepsHtml.map((step) => (
+            <li set:html={step} />
+          ))}
+        </ol>
+      </div>
+
+      <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h4 class="text-sm font-semibold text-[var(--color-ink)] mb-2">{guide.sec5Strat2Title}</h4>
+        <p class="text-xs sm:text-sm text-[var(--color-body)] leading-relaxed">
+          {guide.sec5Strat2Desc}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6 -->
+  <section class="mb-14">
+    <h3 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      {guide.sec6Title}
+    </h3>
+    <p class="text-base text-[var(--color-body)] leading-relaxed mb-4">
+      {guide.sec6Intro}
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h4 class="text-xs font-mono font-medium text-[var(--color-ink)] uppercase mb-2">{guide.sec6DryTitle}</h4>
+        <p class="text-xs text-[var(--color-body)] leading-relaxed" set:html={guide.sec6DryTextHtml} />
+      </div>
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h4 class="text-xs font-mono font-medium text-[var(--color-ink)] uppercase mb-2">{guide.sec6MoistTitle}</h4>
+        <p class="text-xs text-[var(--color-body)] leading-relaxed" set:html={guide.sec6MoistTextHtml} />
+      </div>
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h4 class="text-xs font-mono font-medium text-[var(--color-ink)] uppercase mb-2">{guide.sec6SousVideTitle}</h4>
+        <p class="text-xs text-[var(--color-body)] leading-relaxed" set:html={guide.sec6SousVideTextHtml} />
+      </div>
+    </div>
+
+    <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] my-6">
+      <h4 class="text-base font-semibold text-[var(--color-ink)] mb-2">{guide.sec6DonenessTitle}</h4>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs font-mono mt-3">
+        {guide.donenessRows.map((d) => (
+          <div class="p-2.5 bg-[var(--color-canvas)] rounded border border-[var(--color-hairline)]">
+            <p class="text-[var(--color-mute)]">{d.name}</p>
+            <p class="font-semibold text-[var(--color-ink)] text-sm">{d.yield}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7 -->
+  <section class="mb-14">
+    <h3 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      {guide.sec7Title}
+    </h3>
+    <div class="space-y-4">
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h4 class="text-sm font-semibold text-[var(--color-ink)] mb-1">{guide.sec7BoneTitle}</h4>
+        <p class="text-xs sm:text-sm text-[var(--color-body)] leading-relaxed">
+          {guide.sec7BoneText}
+        </p>
+      </div>
+
+      <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <h4 class="text-sm font-semibold text-[var(--color-ink)] mb-1">{guide.sec7InjectionTitle}</h4>
+        <p class="text-xs sm:text-sm text-[var(--color-body)] leading-relaxed">
+          {guide.sec7InjectionText}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8 -->
+  <section class="mb-14">
+    <h3 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      {guide.sec8Title}
+    </h3>
+    <p class="text-sm text-[var(--color-body)] leading-relaxed mb-4">
+      {guide.sec8Text}
+    </p>
+  </section>
+
+  <!-- Section 9 -->
+  <section class="mb-14">
+    <h3 class="text-2xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
+      {guide.sec9Title}
+    </h3>
+    <ul class="space-y-2.5 text-xs sm:text-sm text-[var(--color-body)] leading-relaxed">
+      {guide.sec9TipsHtml.map((tip) => (
+        <li class="pl-4 border-l-2 border-[var(--color-ink)]" set:html={tip} />
+      ))}
+    </ul>
+  </section>
+
+  <!-- Author / Methodology Attribution -->
+  <footer class="pt-8 border-t border-[var(--color-hairline)] text-xs text-[var(--color-mute)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <p class="font-medium text-[var(--color-ink)]">{guide.footerTeam}</p>
+      <p class="mt-0.5">{guide.footerSource}</p>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href={`${prefix}/methodology`} class="text-[var(--color-link)] hover:underline no-underline">{guide.footerMethodology}</a>
+      <span>•</span>
+      <a href={`${prefix}/about`} class="text-[var(--color-link)] hover:underline no-underline">{guide.footerAbout}</a>
+    </div>
+  </footer>
+</article>

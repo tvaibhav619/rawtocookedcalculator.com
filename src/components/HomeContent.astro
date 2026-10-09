@@ -1,5 +1,6 @@
 ---
 import Calculator from './Calculator.astro';
+import HomeComprehensiveGuide from './HomeComprehensiveGuide.astro';
 import { t, tf, getLangPrefix } from '../i18n';
 import type { Locale } from '../i18n';
 import { getHome } from '../i18n/home';
@@ -237,52 +238,4 @@ const categories = [
   </div>
 </section>
 
-<!-- SEO article -->
-<section class="border-t border-[var(--color-hairline)]">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-    <article class="max-w-2xl prose-custom">
-
-      <h2 class="text-xl font-semibold text-[var(--color-ink)] tracking-tight mb-4">
-        {article.heading}
-      </h2>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-4">
-        {article.intro}
-      </p>
-
-      <h3 class="text-base font-semibold text-[var(--color-ink)] tracking-tight mt-8 mb-3">
-        {article.whyHeading}
-      </h3>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-3">{article.whyP1}</p>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-4">{article.whyP2}</p>
-
-      <h3 class="text-base font-semibold text-[var(--color-ink)] tracking-tight mt-8 mb-3">
-        {article.chickenHeading}
-      </h3>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-3">{article.chickenP1}</p>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-4">{article.chickenP2}</p>
-
-      <h3 class="text-base font-semibold text-[var(--color-ink)] tracking-tight mt-8 mb-3">
-        {article.beefHeading}
-      </h3>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-3">{article.beefP1}</p>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-4">{article.beefP2}</p>
-
-      <h3 class="text-base font-semibold text-[var(--color-ink)] tracking-tight mt-8 mb-3">
-        {article.riceHeading}
-      </h3>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-3">{article.riceP1}</p>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-4">{article.riceP2}</p>
-
-      <h3 class="text-base font-semibold text-[var(--color-ink)] tracking-tight mt-8 mb-3">
-        {article.usdaHeading}
-      </h3>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed mb-4">{article.usdaP1}</p>
-
-      <h3 class="text-base font-semibold text-[var(--color-ink)] tracking-tight mt-8 mb-3">
-        {article.calorieTargetHeading}
-      </h3>
-      <p class="text-sm text-[var(--color-body)] leading-relaxed" set:html={article.calorieTargetHtml} />
-
-    </article>
-  </div>
-</section>
+<HomeComprehensiveGuide locale={locale} />

@@ -76,6 +76,10 @@ function pages(): Page[] {
       locales: LOCALES.filter(foodPageHasFullContent),
     })),
 
+    // Blog / guides
+    { path: 'blog', priority: '0.8', localizedPriority: '0.5', changefreq: 'weekly', enOnly: true },
+    { path: 'blog/how-do-i-convert-raw-weight-to-cooked-weight', priority: '0.8', localizedPriority: '0.5', changefreq: 'monthly', enOnly: true },
+
     // Company / info pages
     { path: 'about', priority: '0.4', localizedPriority: '0.3', changefreq: 'yearly' },
     { path: 'methodology', priority: '0.4', localizedPriority: '0.3', changefreq: 'yearly', enOnly: true },
