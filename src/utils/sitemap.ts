@@ -12,7 +12,7 @@ import { foodPageHasFullContent } from '../i18n/food-content';
 export const BASE = 'https://rawtocookedcalculator.com';
 
 // Bump this (ISO YYYY-MM-DD) whenever site content changes materially.
-export const LASTMOD = '2026-09-09';
+export const LASTMOD = '2026-10-09';
 
 export type ChangeFreq = 'daily' | 'weekly' | 'monthly' | 'yearly';
 
