@@ -1,6 +1,7 @@
 import { SLUG_TO_ID } from './foods';
 import { LOCALES } from '../i18n';
 import { foodPageHasFullContent } from '../i18n/food-content';
+import { ALL_BLOG_POSTS } from '../data/blogs';
 
 /**
  * Shared sitemap generation. Consumed by:
@@ -12,7 +13,7 @@ import { foodPageHasFullContent } from '../i18n/food-content';
 export const BASE = 'https://rawtocookedcalculator.com';
 
 // Bump this (ISO YYYY-MM-DD) whenever site content changes materially.
-export const LASTMOD = '2026-10-09';
+export const LASTMOD = '2026-10-10';
 
 export type ChangeFreq = 'daily' | 'weekly' | 'monthly' | 'yearly';
 
@@ -78,7 +79,14 @@ function pages(): Page[] {
 
     // Blog / guides
     { path: 'blog', priority: '0.8', localizedPriority: '0.5', changefreq: 'weekly', enOnly: true },
-    { path: 'blog/how-do-i-convert-raw-weight-to-cooked-weight', priority: '0.8', localizedPriority: '0.5', changefreq: 'monthly', enOnly: true },
+    { path: 'blogs', priority: '0.7', localizedPriority: '0.4', changefreq: 'weekly', enOnly: true },
+    ...ALL_BLOG_POSTS.map((post) => ({
+      path: `blog/${post.slug}`,
+      priority: post.slug === 'how-do-i-convert-raw-weight-to-cooked-weight' ? '0.8' : '0.7',
+      localizedPriority: '0.4',
+      changefreq: 'monthly' as ChangeFreq,
+      enOnly: true,
+    })),
 
     // Company / info pages
     { path: 'about', priority: '0.4', localizedPriority: '0.3', changefreq: 'yearly' },

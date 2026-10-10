@@ -1,0 +1,297 @@
+---
+import type { BlogPost } from '../data/blogs';
+import { getRelatedBlogPosts } from '../data/blogs';
+
+interface Props {
+  post: BlogPost;
+  locale?: string;
+}
+
+const { post, locale = 'en' } = Astro.props;
+const relatedPosts = getRelatedBlogPosts(post, 3);
+---
+
+<article class="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+  <!-- Breadcrumbs -->
+  <nav class="flex flex-wrap items-center gap-2 text-xs font-mono text-[var(--color-mute)] mb-6" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-[var(--color-ink)] transition-colors no-underline">Home</a>
+    <span>/</span>
+    <a href="/blog" class="hover:text-[var(--color-ink)] transition-colors no-underline">Blog</a>
+    <span>/</span>
+    <span class="text-[var(--color-mute)]">{post.category}</span>
+    <span>/</span>
+    <span class="text-[var(--color-ink)] truncate max-w-[240px] sm:max-w-none">{post.shortTitle}</span>
+  </nav>
+
+  <!-- Article Header -->
+  <header class="border-b border-[var(--color-hairline)] pb-8 mb-10">
+    <div class="flex flex-wrap items-center gap-2 mb-4">
+      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-mono font-medium bg-[var(--color-surface)] border border-[var(--color-hairline)] text-[var(--color-mute)]">
+        {post.category}
+      </span>
+      <span class="text-xs text-[var(--color-mute)]">•</span>
+      <span class="text-xs font-mono text-[var(--color-mute)]">{post.readTime}</span>
+      <span class="text-xs text-[var(--color-mute)]">•</span>
+      <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium">✓ Scientifically Verified</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-5xl font-bold text-[var(--color-ink)] tracking-tight leading-[1.18] mb-6 text-balance">
+      {post.title}
+    </h1>
+
+    <p class="text-lg text-[var(--color-body)] leading-relaxed max-w-3xl mb-6">
+      {post.summary}
+    </p>
+
+    <!-- Byline Meta / E-E-A-T -->
+    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[var(--color-hairline)] text-xs text-[var(--color-mute)] font-mono">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-full bg-[var(--color-surface)] border border-[var(--color-hairline)] flex items-center justify-center font-bold text-[var(--color-ink)] text-xs">
+          VT
+        </div>
+        <span>
+          By <a href="/about" class="text-[var(--color-ink)] font-medium hover:underline">Vaibhav Tiwari</a>
+          <span class="text-[var(--color-faint)]"> (Nutrition & Culinary Science)</span>
+        </span>
+      </div>
+      <div>
+        <span>Published: {post.publishedDate}</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Quick Answer Box -->
+  <div class="bg-[var(--color-surface)] border-2 border-[var(--color-hairline)] rounded-[var(--radius-md)] p-6 mb-10 shadow-xs">
+    <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--color-ink)] font-bold mb-2">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+      Quick Answer & Key Takeaway
+    </div>
+    <h2 class="text-xl font-bold text-[var(--color-ink)] mb-3">
+      {post.quickAnswer.headline}
+    </h2>
+    <p class="text-sm text-[var(--color-body)] leading-relaxed mb-6">
+      {post.quickAnswer.text}
+    </p>
+
+    <!-- Key Stats Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+      {post.quickAnswer.keyStats.map((stat) => (
+        <div class="p-3.5 bg-[var(--color-canvas)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+          <span class="text-xs font-mono text-[var(--color-mute)] uppercase block mb-1">{stat.label}</span>
+          <span class="text-base font-bold text-[var(--color-ink)] font-mono block">{stat.value}</span>
+          {stat.note && <span class="text-xs text-[var(--color-body)] mt-1 block opacity-90">{stat.note}</span>}
+        </div>
+      ))}
+    </div>
+
+    <!-- Quick Tool CTA -->
+    <div class="pt-3 border-t border-[var(--color-hairline)] flex flex-wrap items-center justify-between gap-2 text-xs">
+      <span class="text-[var(--color-mute)]">Calculate your custom portion with zero manual math:</span>
+      <a href={post.calculatorCta.targetUrl} class="text-[var(--color-link)] font-semibold hover:underline flex items-center gap-1">
+        <span>Use Interactive Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Key Takeaways Box -->
+  {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+    <div class="p-5 mb-10 bg-[var(--color-canvas)] border border-[var(--color-hairline)] rounded-[var(--radius-md)]">
+      <h3 class="text-xs font-mono font-bold text-[var(--color-mute)] uppercase tracking-wider mb-3">
+        Key Findings at a Glance
+      </h3>
+      <ul class="space-y-2 text-sm text-[var(--color-body)]">
+        {post.keyTakeaways.map((takeaway) => (
+          <li class="flex items-start gap-2.5">
+            <span class="text-emerald-500 font-bold shrink-0 mt-0.5">✓</span>
+            <span class="leading-relaxed">{takeaway}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  <!-- Table of Contents -->
+  <div class="bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] p-5 mb-12">
+    <p class="text-xs font-mono font-medium text-[var(--color-mute)] uppercase tracking-wider mb-3">Table of Contents</p>
+    <ul class="space-y-2 text-sm">
+      {post.sections.map((section, idx) => (
+        <li>
+          <a href={`#${section.id}`} class="text-[var(--color-body)] hover:text-[var(--color-ink)] transition-colors no-underline flex items-baseline gap-2">
+            <span class="text-xs font-mono text-[var(--color-mute)]">{idx + 1}.</span>
+            <span>{section.title}</span>
+          </a>
+        </li>
+      ))}
+      {post.tableData && (
+        <li>
+          <a href="#data-table" class="text-[var(--color-body)] hover:text-[var(--color-ink)] transition-colors no-underline flex items-baseline gap-2">
+            <span class="text-xs font-mono text-[var(--color-mute)]">{post.sections.length + 1}.</span>
+            <span>{post.tableData.caption}</span>
+          </a>
+        </li>
+      )}
+      {post.faqs && post.faqs.length > 0 && (
+        <li>
+          <a href="#faq-section" class="text-[var(--color-body)] hover:text-[var(--color-ink)] transition-colors no-underline flex items-baseline gap-2">
+            <span class="text-xs font-mono text-[var(--color-mute)]">{post.sections.length + (post.tableData ? 2 : 1)}.</span>
+            <span>Frequently Asked Questions</span>
+          </a>
+        </li>
+      )}
+    </ul>
+  </div>
+
+  <!-- Main Body Sections -->
+  <div class="prose prose-neutral dark:prose-invert max-w-none space-y-12">
+    {post.sections.map((section) => (
+      <section id={section.id} class="scroll-mt-20">
+        <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-ink)] tracking-tight mb-5">
+          {section.title}
+        </h2>
+        <div class="text-base text-[var(--color-body)] leading-relaxed" set:html={section.content} />
+      </section>
+    ))}
+
+    <!-- Data Table Section -->
+    {post.tableData && (
+      <section id="data-table" class="scroll-mt-20 pt-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-ink)] tracking-tight mb-4">
+          Reference Data & Nutritional Benchmarks
+        </h2>
+        <div class="border border-[var(--color-hairline)] rounded-[var(--radius-md)] overflow-hidden my-6 bg-[var(--color-canvas)]">
+          <div class="px-4 py-3 bg-[var(--color-surface)] border-b border-[var(--color-hairline)] flex items-center justify-between">
+            <caption class="text-xs font-mono font-medium text-[var(--color-ink)] text-left">{post.tableData.caption}</caption>
+            <span class="text-[10px] font-mono text-[var(--color-mute)] uppercase">USDA / IFCT Source</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-[var(--color-hairline)] bg-[var(--color-surface)]/50 text-xs font-mono text-[var(--color-mute)] uppercase">
+                  {post.tableData.headers.map((h) => (
+                    <th scope="col" class="px-4 py-3 font-semibold">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--color-hairline)]">
+                {post.tableData.rows.map((row) => (
+                  <tr class="hover:bg-[var(--color-surface)]/60 transition-colors">
+                    {row.map((cell, cIdx) => (
+                      <td class={`px-4 py-3 ${cIdx === 0 ? 'font-medium text-[var(--color-ink)]' : 'text-[var(--color-body)]'}`}>
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- FAQ Section with Schema -->
+    {post.faqs && post.faqs.length > 0 && (
+      <section id="faq-section" class="scroll-mt-20 pt-8 border-t border-[var(--color-hairline)]">
+        <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-ink)] tracking-tight mb-6">
+          Frequently Asked Questions
+        </h2>
+        <div class="space-y-4">
+          {post.faqs.map((faq) => (
+            <div class="p-5 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)]">
+              <h3 class="text-base font-semibold text-[var(--color-ink)] mb-2 flex items-start gap-2">
+                <span class="text-emerald-500 font-mono font-bold">Q:</span>
+                <span>{faq.question}</span>
+              </h3>
+              <p class="text-sm text-[var(--color-body)] leading-relaxed pl-6">
+                {faq.answer}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+
+  <!-- High-Converting Calculator CTA Card -->
+  <div class="mt-14 p-8 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-canvas)] border-2 border-[var(--color-ink)]/10 rounded-[var(--radius-lg)] shadow-sm text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div class="max-w-xl">
+      <span class="text-xs font-mono font-semibold text-[var(--color-mute)] uppercase tracking-wider block mb-1">
+        Interactive Cooking Calculator
+      </span>
+      <h3 class="text-xl sm:text-2xl font-bold text-[var(--color-ink)] tracking-tight mb-2">
+        {post.calculatorCta.title}
+      </h3>
+      <p class="text-sm text-[var(--color-body)] leading-relaxed">
+        {post.calculatorCta.description}
+      </p>
+    </div>
+    <a
+      href={post.calculatorCta.targetUrl}
+      class="shrink-0 px-6 py-3 rounded-full bg-[var(--color-ink)] text-[var(--color-canvas)] text-sm font-semibold hover:opacity-90 transition-opacity no-underline shadow-xs"
+    >
+      {post.calculatorCta.buttonText} →
+    </a>
+  </div>
+
+  <!-- Author Bio / E-E-A-T Box -->
+  <div class="mt-14 p-6 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-md)] flex flex-col sm:flex-row items-start gap-4">
+    <div class="w-12 h-12 rounded-full bg-[var(--color-ink)] text-[var(--color-canvas)] flex items-center justify-center font-bold text-base shrink-0">
+      VT
+    </div>
+    <div>
+      <h4 class="text-sm font-bold text-[var(--color-ink)]">
+        Written by Vaibhav Tiwari
+      </h4>
+      <p class="text-xs text-[var(--color-mute)] mb-2">
+        Founder & Lead Nutrition Researcher at RawToCookedCalculator.com
+      </p>
+      <p class="text-xs text-[var(--color-body)] leading-relaxed">
+        Vaibhav conducts empirical testing on moisture evaporation dynamics across culinary preparation methods and analyzes USDA FoodData Central and IFCT nutritional datasets. Our mission is to eliminate guesswork in dietary tracking and kitchen mathematics.
+      </p>
+      <div class="mt-3 flex items-center gap-3 text-xs">
+        <a href="/about" class="text-[var(--color-link)] hover:underline font-medium">About our editorial standards →</a>
+        <span class="text-[var(--color-hairline)]">|</span>
+        <a href="/methodology" class="text-[var(--color-link)] hover:underline font-medium">Read data methodology →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Articles -->
+  {relatedPosts.length > 0 && (
+    <div class="mt-16 pt-10 border-t border-[var(--color-hairline)]">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-[var(--color-ink)]">
+          Related Nutrition & Culinary Guides
+        </h3>
+        <a href="/blog" class="text-xs font-mono text-[var(--color-link)] hover:underline">
+          View all blogs →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {relatedPosts.map((rel) => (
+          <a
+            href={`/blog/${rel.slug}`}
+            class="group p-4 bg-[var(--color-canvas)] border border-[var(--color-hairline)] hover:border-[var(--color-ink)] rounded-[var(--radius-md)] transition-all no-underline flex flex-col justify-between"
+          >
+            <div>
+              <span class="text-[10px] font-mono uppercase text-[var(--color-mute)] block mb-1">
+                {rel.category}
+              </span>
+              <h4 class="text-sm font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-link)] transition-colors leading-snug mb-2">
+                {rel.shortTitle}
+              </h4>
+              <p class="text-xs text-[var(--color-body)] line-clamp-2 leading-relaxed opacity-90">
+                {rel.summary}
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--color-hairline)] flex items-center justify-between text-[11px] font-mono text-[var(--color-mute)]">
+              <span>{rel.readTime}</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+</article>

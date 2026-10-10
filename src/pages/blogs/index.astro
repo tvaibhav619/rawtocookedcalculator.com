@@ -5,6 +5,7 @@ import { ALL_BLOG_POSTS } from '../../data/blogs';
 
 const locale = 'en';
 const BASE = 'https://rawtocookedcalculator.com';
+// Canonical points to the primary hub /blog
 const url = `${BASE}/blog`;
 
 const jsonLd = {
@@ -27,18 +28,6 @@ const jsonLd = {
           url: `${BASE}/favicon.svg`,
         },
       },
-      blogPost: ALL_BLOG_POSTS.map((post) => ({
-        '@type': 'BlogPosting',
-        headline: post.title,
-        url: `${BASE}/blog/${post.slug}`,
-        datePublished: `${post.publishedDate}T08:00:00+00:00`,
-        dateModified: `${post.modifiedDate}T12:00:00+00:00`,
-        author: {
-          '@type': 'Person',
-          name: 'Vaibhav Tiwari',
-          url: `${BASE}/about`,
-        },
-      })),
     },
     {
       '@type': 'BreadcrumbList',
@@ -52,8 +41,8 @@ const jsonLd = {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Blog',
-          item: url,
+          name: 'Blogs',
+          item: `${BASE}/blogs`,
         },
       ],
     },
@@ -71,5 +60,5 @@ const hreflangUrls: Record<string, string> = { en: url };
   locale={locale}
   hreflangUrls={hreflangUrls}
 >
-  <BlogIndexContent locale={locale} baseUrlPrefix="/blog" />
+  <BlogIndexContent locale={locale} baseUrlPrefix="/blogs" />
 </BaseLayout>

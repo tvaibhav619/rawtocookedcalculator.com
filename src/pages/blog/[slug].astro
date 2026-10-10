@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPostContent from '../../components/BlogPostContent.astro';
+import BlogArticleView from '../../components/BlogArticleView.astro';
+import { ALL_BLOG_POSTS } from '../../data/blogs';
+import type { BlogPost } from '../../data/blogs';
+
+export function getStaticPaths() {
+  return ALL_BLOG_POSTS.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const locale = 'en';
+const BASE = 'https://rawtocookedcalculator.com';
+const url = `${BASE}/blog/${post.slug}`;
+
+const graph: object[] = [
+  {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: post.title,
+    name: post.title,
+    description: post.description,
+    url: url,
+    mainEntityOfPage: url,
+    datePublished: `${post.publishedDate}T08:00:00+00:00`,
+    dateModified: `${post.modifiedDate}T12:00:00+00:00`,
+    inLanguage: 'en-US',
+    author: {
+      '@type': 'Person',
+      name: 'Vaibhav Tiwari',
+      url: `${BASE}/about`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Raw to Cooked Calculator',
+      url: BASE,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE}/favicon.svg`,
+      },
+    },
+    articleSection: post.category,
+    keywords: post.keywords,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${BASE}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${BASE}/blog`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.shortTitle,
+        item: url,
+      },
+    ],
+  },
+];
+
+if (post.faqs && post.faqs.length > 0) {
+  graph.push({
+    '@type': 'FAQPage',
+    mainEntity: post.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  });
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': graph,
+};
+
+const hreflangUrls: Record<string, string> = { en: url };
+---
+
+<BaseLayout
+  title={`${post.title} | Raw to Cooked Guide`}
+  description={post.description}
+  canonicalUrl={url}
+  jsonLd={jsonLd}
+  locale={locale}
+  hreflangUrls={hreflangUrls}
+>
+  {post.slug === 'how-do-i-convert-raw-weight-to-cooked-weight' ? (
+    <BlogPostContent locale={locale} />
+  ) : (
+    <BlogArticleView post={post} locale={locale} />
+  )}
+</BaseLayout>

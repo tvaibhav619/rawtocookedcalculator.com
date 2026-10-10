@@ -1,0 +1,206 @@
+---
+import { ALL_BLOG_POSTS, getBlogCategories } from '../data/blogs';
+
+interface Props {
+  locale?: string;
+  baseUrlPrefix?: string;
+}
+
+const { locale = 'en', baseUrlPrefix = '/blog' } = Astro.props;
+const categories = getBlogCategories();
+const featuredPost = ALL_BLOG_POSTS[0]; // Master raw to cooked guide
+const remainingPosts = ALL_BLOG_POSTS.slice(1);
+---
+
+<div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+  <!-- Header / Hero -->
+  <header class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-surface)] border border-[var(--color-hairline)] text-xs font-mono text-[var(--color-mute)] uppercase tracking-wider mb-4">
+      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+      Evidence-Based Culinary & Nutrition Science
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--color-ink)] tracking-tight leading-[1.15] mb-4 text-balance">
+      Raw to Cooked Knowledge Hub
+    </h1>
+    <p class="text-base sm:text-lg text-[var(--color-body)] leading-relaxed">
+      Accurate food weight conversions, USDA cooking yields, macro tracking guides, portion visuals, and food safety standards to take the guesswork out of meal prep.
+    </p>
+
+    <!-- Quick Stats Bar -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 pt-8 border-t border-[var(--color-hairline)] text-left">
+      <div class="p-3 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <span class="text-[11px] font-mono text-[var(--color-mute)] uppercase block">Articles & Guides</span>
+        <span class="text-xl font-bold text-[var(--color-ink)] font-mono">18 Comprehensive</span>
+      </div>
+      <div class="p-3 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <span class="text-[11px] font-mono text-[var(--color-mute)] uppercase block">Data Sources</span>
+        <span class="text-xl font-bold text-[var(--color-ink)] font-mono">USDA & IFCT</span>
+      </div>
+      <div class="p-3 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <span class="text-[11px] font-mono text-[var(--color-mute)] uppercase block">Topics Covered</span>
+        <span class="text-xl font-bold text-[var(--color-ink)] font-mono">Macros & Safety</span>
+      </div>
+      <div class="p-3 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+        <span class="text-[11px] font-mono text-[var(--color-mute)] uppercase block">Editorial Lead</span>
+        <span class="text-xl font-bold text-[var(--color-ink)] font-mono">Vaibhav Tiwari</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Category Filter Pills (Client-side interactive) -->
+  <div class="mb-10 flex flex-wrap items-center justify-center gap-2">
+    <button
+      type="button"
+      class="filter-pill px-4 py-1.5 rounded-full text-xs font-mono font-medium transition-all cursor-pointer bg-[var(--color-ink)] text-[var(--color-canvas)]"
+      data-category="all"
+    >
+      All Guides ({ALL_BLOG_POSTS.length})
+    </button>
+    {categories.map(({ category, count }) => (
+      <button
+        type="button"
+        class="filter-pill px-4 py-1.5 rounded-full text-xs font-mono font-medium transition-all cursor-pointer bg-[var(--color-surface)] text-[var(--color-body)] border border-[var(--color-hairline)] hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]"
+        data-category={category}
+      >
+        {category} ({count})
+      </button>
+    ))}
+  </div>
+
+  <!-- Featured Master Guide -->
+  {featuredPost && (
+    <div class="mb-12 blog-card" data-category={featuredPost.category}>
+      <div class="p-6 sm:p-8 bg-gradient-to-br from-[var(--color-surface)] via-[var(--color-canvas)] to-[var(--color-surface)] border-2 border-[var(--color-ink)]/20 rounded-[var(--radius-lg)] shadow-sm hover:border-[var(--color-ink)] transition-all">
+        <div class="flex flex-wrap items-center gap-2 text-xs font-mono mb-3">
+          <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold uppercase tracking-wider">
+            Flagship Guide
+          </span>
+          <span class="text-[var(--color-mute)]">•</span>
+          <span class="text-[var(--color-mute)]">{featuredPost.category}</span>
+          <span class="text-[var(--color-mute)]">•</span>
+          <span class="text-[var(--color-mute)]">{featuredPost.readTime}</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[var(--color-ink)] tracking-tight mb-3">
+          <a href={`/blog/${featuredPost.slug}`} class="hover:text-[var(--color-link)] transition-colors no-underline">
+            {featuredPost.title}
+          </a>
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--color-body)] leading-relaxed mb-6 max-w-3xl">
+          {featuredPost.summary}
+        </p>
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[var(--color-hairline)]">
+          <div class="flex items-center gap-2 text-xs font-mono text-[var(--color-mute)]">
+            <span>By <strong>Vaibhav Tiwari</strong></span>
+            <span>•</span>
+            <span>Published {featuredPost.publishedDate}</span>
+          </div>
+          <a
+            href={`/blog/${featuredPost.slug}`}
+            class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--color-link)] hover:underline"
+          >
+            <span>Read Complete Guide</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Grid of Articles -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-posts-grid">
+    {remainingPosts.map((post) => (
+      <article
+        class="blog-card flex flex-col justify-between p-6 bg-[var(--color-surface)] border border-[var(--color-hairline)] hover:border-[var(--color-ink)] rounded-[var(--radius-md)] transition-all duration-200 group"
+        data-category={post.category}
+      >
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-[var(--color-mute)] mb-3">
+            <span class="px-2 py-0.5 rounded bg-[var(--color-canvas)] border border-[var(--color-hairline)] text-[10px] uppercase tracking-wider">
+              {post.category}
+            </span>
+            <span>{post.readTime}</span>
+          </div>
+          <h3 class="text-lg font-bold text-[var(--color-ink)] group-hover:text-[var(--color-link)] transition-colors tracking-tight leading-snug mb-3">
+            <a href={`/blog/${post.slug}`} class="no-underline">
+              {post.shortTitle}
+            </a>
+          </h3>
+          <p class="text-xs sm:text-sm text-[var(--color-body)] line-clamp-3 leading-relaxed mb-4">
+            {post.description}
+          </p>
+        </div>
+
+        <div class="pt-4 border-t border-[var(--color-hairline)] flex items-center justify-between text-xs">
+          <span class="font-mono text-[var(--color-mute)] text-[11px]">{post.publishedDate}</span>
+          <a
+            href={`/blog/${post.slug}`}
+            class="text-[var(--color-link)] font-semibold inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform"
+          >
+            <span>Read</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Interactive Calculators CTA Banner -->
+  <div class="mt-16 p-8 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-lg)] text-center max-w-3xl mx-auto">
+    <h3 class="text-xl sm:text-2xl font-bold text-[var(--color-ink)] mb-2">
+      Looking for Interactive Calculations?
+    </h3>
+    <p class="text-sm text-[var(--color-body)] leading-relaxed mb-6">
+      Skip manual math and get exact gram, ounce, and macro conversions using our verified food calculators:
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-2">
+      <a href="/chicken" class="px-4 py-2 rounded-full bg-[var(--color-canvas)] border border-[var(--color-hairline)] hover:border-[var(--color-ink)] text-xs font-medium text-[var(--color-ink)] transition-colors no-underline">
+        🍗 Chicken Calculator
+      </a>
+      <a href="/rice" class="px-4 py-2 rounded-full bg-[var(--color-canvas)] border border-[var(--color-hairline)] hover:border-[var(--color-ink)] text-xs font-medium text-[var(--color-ink)] transition-colors no-underline">
+        🍚 Rice Calculator
+      </a>
+      <a href="/beef" class="px-4 py-2 rounded-full bg-[var(--color-canvas)] border border-[var(--color-hairline)] hover:border-[var(--color-ink)] text-xs font-medium text-[var(--color-ink)] transition-colors no-underline">
+        🥩 Beef Calculator
+      </a>
+      <a href="/salmon" class="px-4 py-2 rounded-full bg-[var(--color-canvas)] border border-[var(--color-hairline)] hover:border-[var(--color-ink)] text-xs font-medium text-[var(--color-ink)] transition-colors no-underline">
+        🐟 Salmon Calculator
+      </a>
+      <a href="/pasta" class="px-4 py-2 rounded-full bg-[var(--color-canvas)] border border-[var(--color-hairline)] hover:border-[var(--color-ink)] text-xs font-medium text-[var(--color-ink)] transition-colors no-underline">
+        🍝 Pasta Calculator
+      </a>
+      <a href="/" class="px-4 py-2 rounded-full bg-[var(--color-ink)] text-[var(--color-canvas)] text-xs font-semibold hover:opacity-90 transition-opacity no-underline">
+        All 25+ Foods →
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Client-side category filtering
+  const filterPills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+  const blogCards = document.querySelectorAll<HTMLElement>('.blog-card');
+
+  filterPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const selectedCategory = pill.getAttribute('data-category');
+
+      // Update pill active styles
+      filterPills.forEach((p) => {
+        p.classList.remove('bg-[var(--color-ink)]', 'text-[var(--color-canvas)]');
+        p.classList.add('bg-[var(--color-surface)]', 'text-[var(--color-body)]', 'border', 'border-[var(--color-hairline)]');
+      });
+      pill.classList.remove('bg-[var(--color-surface)]', 'text-[var(--color-body)]', 'border', 'border-[var(--color-hairline)]');
+      pill.classList.add('bg-[var(--color-ink)]', 'text-[var(--color-canvas)]');
+
+      // Filter articles
+      blogCards.forEach((card) => {
+        const cardCategory = card.getAttribute('data-category');
+        if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
