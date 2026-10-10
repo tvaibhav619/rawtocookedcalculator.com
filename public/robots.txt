@@ -1,6 +1,10 @@
+User-agent: Mediapartners-Google
+Allow: /
+
 User-agent: *
 Allow: /
 Disallow: /404
 Disallow: /500
 
 Sitemap: https://rawtocookedcalculator.com/sitemap-index.xml
+Sitemap: https://rawtocookedcalculator.com/sitemap.xml
