@@ -514,5 +514,251 @@ export const CONVERSION_BLOGS: BlogPost[] = [
       'how-much-raw-chicken-for-30g-protein',
       'protein-in-150g-raw-chicken-breast'
     ]
+  },
+  {
+    slug: 'raw-vs-cooked-rice-weight-conversion',
+    title: 'How Much Does 100g of Dry Rice Weigh Cooked? (The 3x Ratio, Water Absorption & Calories)',
+    shortTitle: 'Dry to Cooked Rice Weight & Macros',
+    description: 'Learn how 100g of dry white or brown rice expands to 300g cooked. Master the 3:1 yield multiplier, starch gelatinization science, and macro logging best practices.',
+    category: 'Weight Conversions',
+    readTime: '8 min read',
+    publishedDate: '2026-10-10',
+    modifiedDate: '2026-10-10',
+    keywords: [
+      'how much does 100g dry rice weigh cooked',
+      '100g raw rice cooked weight',
+      'rice raw to cooked ratio',
+      'cooked rice to raw rice calculator',
+      'how to track cooked rice macros'
+    ],
+    summary: 'A complete scientific guide to cooking yields in rice. Learn why grains expand 3x, how calories remain stable while water density shifts, and how to track rice accurately.',
+    quickAnswer: {
+      headline: '100g of Dry White Rice Expands to Approximately 300g Cooked (3.0× Multiplier)',
+      text: 'Long-grain and medium-grain white rice has a standard USDA cooking yield of 300%. That means 100g of dry uncooked rice absorbs 200g of boiling water, yielding exactly 300g of fluffy cooked rice with no change in total carbohydrates or calories.',
+      keyStats: [
+        { label: 'White Rice Cooked Yield', value: '300g Cooked (3.0×)', note: 'Absorbs 200g water per 100g dry' },
+        { label: 'Brown Rice Cooked Yield', value: '270g Cooked (2.7×)', note: 'Fibrous bran layer slightly reduces absorption' },
+        { label: 'Total Calories (100g Dry)', value: '~360 kcal', note: 'Spread across the 300g cooked portion (~120 kcal / 100g)' },
+        { label: 'Total Carbs (100g Dry)', value: '~79g Carbohydrates', note: 'Completely preserved during cooking' }
+      ]
+    },
+    keyTakeaways: [
+      '100g of dry white rice absorbs boiling water and triples in weight, producing roughly 300g of cooked rice (a 3.0× multiplier).',
+      '100g of dry brown rice yields roughly 270g cooked (a 2.7× multiplier) due to its water-resistant outer bran hull.',
+      'The calories in 100g of dry rice (~360 kcal) and 300g of cooked rice (~360 kcal) are identical because water adds zero caloric energy.',
+      'If you scoop 100g of cooked rice onto your plate, it contains only ~120–130 calories and ~27g of carbs—representing just 33g of dry rice.',
+      'Never log cooked rice under a "dry white rice" entry in MyFitnessPal; doing so will accidentally record triple your actual calorie and carbohydrate intake.'
+    ],
+    sections: [
+      {
+        id: 'the-science-of-rice-expansion',
+        title: 'The Thermodynamics of Rice: Starch Gelatinization & Hydration',
+        content: `
+          <p class="mb-4">Raw rice grains are hard, vitreous starch granules containing less than 12% to 14% ambient moisture. When submerged in simmering water above 150°F (65°C), a process called <strong>starch gelatinization</strong> begins:</p>
+          <div class="space-y-4 mb-6">
+            <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+              <h4 class="font-semibold text-sm text-[var(--color-ink)] mb-1">Amylose & Amylopectin Swelling</h4>
+              <p class="text-xs text-[var(--color-body)] leading-relaxed">
+                Hot water molecules penetrate the crystalline lattice of the starch grain, bonding with amylose and amylopectin polysaccharides. The granules swell up to three times their original volume, transforming into soft, tender, digestible grains.
+              </p>
+            </div>
+            <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+              <h4 class="font-semibold text-sm text-[var(--color-ink)] mb-1">Zero Caloric Addition</h4>
+              <p class="text-xs text-[var(--color-body)] leading-relaxed">
+                Because the 200 grams of absorbed mass is pure tap water ($H_2O$), the macronutrient profile of the raw grain is completely preserved. The 360 calories in 100g of dry rice simply become diluted across a larger 300g plate volume.
+              </p>
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 'white-vs-brown-vs-basmati',
+        title: 'Yield Comparisons: Jasmine, Basmati, Brown & Wild Rice',
+        content: `
+          <p class="mb-4">Different rice cultivars absorb water at different rates depending on their grain length and processing:</p>
+          <ul class="list-disc pl-6 space-y-2 text-sm text-[var(--color-body)] mb-6">
+            <li><strong>Long-Grain White Rice & Jasmine (300% yield):</strong> 100g dry → <strong>300g cooked</strong> (multiplier 3.0×). Fluffy, distinct grains.</li>
+            <li><strong>Basmati Rice (280%–300% yield):</strong> 100g dry → <strong>280g–300g cooked</strong> (multiplier 2.8×–3.0×). Grains elongate longitudinally.</li>
+            <li><strong>Brown Rice (270% yield):</strong> 100g dry → <strong>270g cooked</strong> (multiplier 2.7×). Intact bran layer slows water penetration.</li>
+            <li><strong>Sushi / Short-Grain Rice (260%–270% yield):</strong> 100g dry → <strong>260g cooked</strong> (multiplier 2.6×). Starchy and clumping.</li>
+          </ul>
+        `
+      },
+      {
+        id: 'the-resistant-starch-hack',
+        title: 'The "Cooling Hack": Boosting Resistant Starch in Cooked Rice',
+        content: `
+          <p class="mb-4">Food scientists at the College of Chemical Sciences in Sri Lanka discovered a fascinating metabolic trick with cooked rice:</p>
+          <div class="p-4 bg-[var(--color-canvas)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)] mb-6">
+            <h4 class="font-semibold text-sm text-[var(--color-ink)] mb-2">Retrogradation & Gut Health</h4>
+            <p class="text-xs text-[var(--color-body)] leading-relaxed">
+              When cooked rice is refrigerated at 38°F (4°C) for 12 to 24 hours, the gelatinized starch molecules realign into a crystalline structure known as <strong>Type 3 Resistant Starch</strong>.
+              Resistant starch resists digestion in the small intestine, acting like soluble prebiotic fiber that feeds beneficial bifidobacteria in your colon while reducing net digestible calories by 10% to 15%!
+            </p>
+          </div>
+        `
+      }
+    ],
+    tableData: {
+      caption: 'Dry vs Cooked Rice Conversion & Calorie Scaling Table',
+      headers: ['Dry Weight', 'Cooked Yield (3.0×)', 'Cooked Calories', 'Carbohydrates (g)', 'Cooked Cups Approx'],
+      rows: [
+        ['50g dry', '150g cooked', '180 kcal', '39.5g', '1 cup cooked'],
+        ['75g dry', '225g cooked', '270 kcal', '59.3g', '1.5 cups cooked'],
+        ['100g dry', '300g cooked', '360 kcal', '79.0g', '2 cups cooked'],
+        ['125g dry', '375g cooked', '450 kcal', '98.8g', '2.5 cups cooked'],
+        ['150g dry', '450g cooked', '540 kcal', '118.5g', '3 cups cooked']
+      ]
+    },
+    faqs: [
+      {
+        question: 'Should I weigh rice before or after cooking for weight loss?',
+        answer: 'Weighing rice DRY before cooking is the most accurate method because the exact amount of water you add or boil off can cause cooked weight to vary between 2.6x and 3.2x. If you must weigh cooked rice, look for an entry labeled "White rice, cooked, long-grain" and log the cooked weight.'
+      },
+      {
+        question: 'How much dry rice equals 1 cup of cooked rice?',
+        answer: 'One standard measuring cup of cooked fluffy white rice weighs approximately 150 to 160 grams. That means 1 cup of cooked rice was made from roughly 50 to 53 grams of dry uncooked rice.'
+      },
+      {
+        question: 'Does rinsing rice remove calories or starch?',
+        answer: 'Rinsing uncooked rice under cold water washes away excess surface amylose starch dust left from the milling process. This prevents the rice from turning into a sticky paste, but it only removes about 1 to 2 calories per 100g.'
+      }
+    ],
+    calculatorCta: {
+      title: 'Calculate Rice Conversions Instantly',
+      description: 'Switch between dry and cooked white rice, brown rice, and grains with our interactive converter.',
+      buttonText: 'Open Rice Weight Calculator',
+      targetUrl: '/rice'
+    },
+    relatedSlugs: [
+      'how-do-i-convert-raw-weight-to-cooked-weight',
+      'when-to-weigh-food-cooked-or-raw',
+      'how-to-weigh-food-raw-or-cooked-step-by-step',
+      'how-much-will-200g-raw-meat-weigh-cooked'
+    ]
+  },
+  {
+    slug: 'ground-beef-raw-vs-cooked-weight-fat-loss',
+    title: 'Raw vs Cooked Ground Beef: How Much Fat and Weight is Lost When Cooking?',
+    shortTitle: 'Raw vs Cooked Ground Beef Yield & Fat Loss',
+    description: 'Learn how much weight, fat, and calories ground beef loses when cooked. Compare 80/20 vs 90/10 vs 93/7 cooked yields, rendered grease loss, and USDA macro data.',
+    category: 'Weight Conversions',
+    readTime: '8 min read',
+    publishedDate: '2026-10-10',
+    modifiedDate: '2026-10-10',
+    keywords: [
+      'raw vs cooked ground beef weight',
+      'how much does raw ground beef weigh cooked',
+      '80 20 ground beef cooked weight calories',
+      'does draining fat reduce ground beef calories',
+      'ground beef cooking loss percentage'
+    ],
+    summary: 'A complete nutritional guide to ground beef cooking yields. Learn the exact difference between water evaporation and fat rendering across 80/20, 85/15, and 90/10 lean blends.',
+    quickAnswer: {
+      headline: 'Ground Beef Loses 19% to 30% of its Weight Depending on Lean Percentage',
+      text: 'Standard 80/20 ground chuck yields approximately 73% cooked weight (~146g cooked per 200g raw) due to water loss and rendered tallow. In contrast, 90/10 lean beef yields 81% (~162g cooked per 200g raw). Draining rendered fat reduces calories by 40 to 65 kcal per 100g raw.',
+      keyStats: [
+        { label: '80/20 Ground Beef Yield', value: '73% Cooked', note: 'Loses 27% (water + melted beef tallow)' },
+        { label: '90/10 Lean Beef Yield', value: '81% Cooked', note: 'Loses 19% (mostly water evaporation)' },
+        { label: '93/7 Extra Lean Yield', value: '83% Cooked', note: 'Loses 17% (minimal fat rendering)' },
+        { label: 'Drained Fat Calories', value: '-40 to -65 kcal', note: 'Per 100g raw when grease is discarded' }
+      ]
+    },
+    keyTakeaways: [
+      '80/20 ground beef yields ~73% cooked weight, meaning 100g raw shrinks to ~73g cooked, losing 27g of liquid (a mixture of water and rendered beef fat).',
+      '90/10 ground beef yields ~81% cooked weight, meaning 100g raw shrinks to ~81g cooked, retaining far more mass because it contains less fat to melt away.',
+      'When you pan-brown 80/20 ground beef and drain off the grease in the pan, you remove roughly 5 to 7 grams of pure fat per 100g raw, reducing calories by ~50 kcal.',
+      'For burgers where drippings stay in the meat or are eaten, use the "pan-broiled undrained" USDA entry.',
+      'Weighing ground beef raw is always the most accurate method unless you thoroughly drain the fat, in which case a "cooked, drained" USDA entry should be selected.'
+    ],
+    sections: [
+      {
+        id: 'moisture-vs-fat-rendering',
+        title: 'The Two Forces of Ground Beef Shrinkage: Water vs. Fat',
+        content: `
+          <p class="mb-4">Unlike whole steaks where fat is primarily located on the outer edge, ground beef has fat intimately ground into the muscle tissue. When heat is applied, two distinct mass losses occur:</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+            <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+              <h4 class="font-semibold text-sm text-[var(--color-ink)] mb-1">Water Evaporation (~15%–20%)</h4>
+              <p class="text-xs text-[var(--color-body)] leading-relaxed">
+                Raw ground beef is approximately 60% to 65% water. As the meat proteins (myosin and actin) denature and tighten, water is expressed into the hot skillet and boils away as steam.
+              </p>
+            </div>
+            <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)]">
+              <h4 class="font-semibold text-sm text-[var(--color-ink)] mb-1">Lipid Liquefaction (~5%–15%)</h4>
+              <p class="text-xs text-[var(--color-body)] leading-relaxed">
+                Beef tallow begins melting at 95°F to 105°F (35°C–40°C). In fattier blends like 80/20 or 73/27, liquefied yellow grease floods the skillet. If poured down the drain or soaked up with a paper towel, significant calories leave the pan.
+              </p>
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 'lean-to-fat-ratio-comparison',
+        title: 'Comparing 80/20, 85/15, 90/10, and 93/7 Blends',
+        content: `
+          <p class="mb-4">The higher the lean percentage on the grocery store label, the greater your final cooked yield:</p>
+          <ul class="list-disc pl-6 space-y-2 text-sm text-[var(--color-body)] mb-6">
+            <li><strong>73/27 Regular Ground Beef:</strong> Yields <strong>~68% cooked</strong>. Extensive fat rendering; best for juicy smash burgers.</li>
+            <li><strong>80/20 Ground Chuck:</strong> Yields <strong>~73% cooked</strong>. The classic burger balance; loses ~27g per 100g raw.</li>
+            <li><strong>85/15 Ground Round:</strong> Yields <strong>~77% cooked</strong>. Good multi-purpose blend for meatballs and tacos.</li>
+            <li><strong>90/10 Lean Ground Sirloin:</strong> Yields <strong>~81% cooked</strong>. High protein yield with minimal pan grease.</li>
+            <li><strong>93/7 Extra Lean Ground Beef:</strong> Yields <strong>~83% cooked</strong>. Highest yield and lowest calorie density.</li>
+          </ul>
+        `
+      },
+      {
+        id: 'the-draining-grease-debate',
+        title: 'Does Draining Grease Turn 80/20 Beef Into 90/10 Beef?',
+        content: `
+          <p class="mb-4">A common kitchen myth claims: <em>"If you buy cheap 80/20 beef and pour out the pan fat, it becomes as lean as 90/10 beef."</em></p>
+          <div class="p-4 bg-[var(--color-surface)] border border-[var(--color-hairline)] rounded-[var(--radius-sm)] mb-6">
+            <h4 class="font-semibold text-sm text-[var(--color-ink)] mb-2">The Scientific Verdict</h4>
+            <p class="text-xs text-[var(--color-body)] leading-relaxed">
+              Research by the USDA and Texas A&M University demonstrated that thoroughly browning and draining 80/20 ground crumbles removes about <strong>30% to 35% of the total fat</strong>.
+              While this drops 100g raw calories from ~254 kcal down to ~200 kcal, it <strong>does not equal 93/7 beef</strong>. A significant portion of rendered fat remains emulsified within the tiny cooked meat crevices. For strict macro tracking, buy 90/10 or 93/7 beef directly.
+            </p>
+          </div>
+        `
+      }
+    ],
+    tableData: {
+      caption: 'Cooked Yields & Nutritional Shifts Across Ground Beef Blends (per 200g Raw)',
+      headers: ['Ground Beef Blend', 'Raw Calories', 'Yield %', 'Cooked Weight', 'Cooked Protein (g)', 'Cooked Fat (g)'],
+      rows: [
+        ['73/27 Ground Beef', '520 kcal', '68%', '136 g', '32.0 g', '34.0 g'],
+        ['80/20 Ground Chuck', '508 kcal', '73%', '146 g', '34.4 g', '28.0 g'],
+        ['85/15 Ground Round', '430 kcal', '77%', '154 g', '37.0 g', '21.0 g'],
+        ['90/10 Lean Beef', '352 kcal', '81%', '162 g', '40.0 g', '14.0 g'],
+        ['93/7 Extra Lean Beef', '304 kcal', '83%', '166 g', '41.6 g', '9.8 g']
+      ]
+    },
+    faqs: [
+      {
+        question: 'How do I log ground beef in MyFitnessPal if I drain the grease?',
+        answer: 'Search for "Ground beef, 80% lean meat / 20% fat, crumbles, cooked, pan-browned, drained". The USDA specifically measures the nutritional profile of browned ground beef after pouring off pan drippings.'
+      },
+      {
+        question: 'Why do my homemade burger patties shrink so much on the grill?',
+        answer: 'Grill heat melts the fat and squeezes water out rapidly. A quarter-pound raw patty (113.4g) made with 80/20 beef will weigh only about 82g to 85g once grilled to medium-well.'
+      },
+      {
+        question: 'Is 90/10 ground beef healthier than 80/20 for weight loss?',
+        answer: 'Yes! 90/10 ground beef provides ~30% fewer calories and nearly double the protein-to-fat ratio, making it much easier to fit into a calorie-controlled fat loss diet.'
+      }
+    ],
+    calculatorCta: {
+      title: 'Convert Ground Beef & Steaks Easily',
+      description: 'Calculate cooked weights and nutritional shifts for all beef cuts with our verified tool.',
+      buttonText: 'Open Beef Calculator',
+      targetUrl: '/beef'
+    },
+    relatedSlugs: [
+      'how-much-will-200g-raw-meat-weigh-cooked',
+      'how-do-i-convert-raw-weight-to-cooked-weight',
+      'when-to-weigh-food-cooked-or-raw',
+      'can-i-eat-200g-chicken-daily'
+    ]
   }
 ];
+
